@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<title>Analog clock</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="description" content="Analog clock.">
+	<meta name="author" content="crotel">
+<style>	* {
+	margin:0;
+	padding:0;
+	}
+	div {
+	width:100%;
+	text-align:center;
+	position: absolute;
+	}
+	canvas {
+	display:inline-block;
+	max-width:100%;
+	max-height:100%;
+	margin:0;
+	padding:0;
+	}
+</style>
+<body>
+<div>
+	<canvas id="canvas" width="800" height="800">
+	</canvas>
+</div>
+<script>
+	var canvas = document.getElementById("canvas");
+	if (window.innerWidth < window.innerHeight) {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerWidth;
+	document.querySelector('div').setAttribute('style','top:20vh;');
+	} else {
+	canvas.width = window.innerHeight;
+	canvas.height = window.innerHeight;
+	document.querySelector('div').setAttribute('style','top:0;');
+	}
+	
+	var ctx = canvas.getContext("2d");
+	var radius = canvas.height / 2;
+	ctx.translate(radius, radius);
+	radius = radius * 0.90
+	setInterval(drawClock, 1000);
+	
+	function drawClock() {
+	  drawFace(ctx, radius);
+	  drawNumbers(ctx, radius);
+	  drawTime(ctx, radius);
+	  drawStop(ctx, radius);
+	}
+	
+	function drawFace(ctx, radius) {
+	  var grad;
+	  ctx.beginPath();
+	  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+	  ctx.fillStyle = 'white';
+	  ctx.fill();
+	  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+	  grad.addColorStop(0, '#888');
+	  //grad.addColorStop(0.5, 'white');
+	  //grad.addColorStop(1, '#888');
+	  ctx.strokeStyle = grad;
+	  ctx.lineWidth = 1;//radius*0.1;
+	  ctx.stroke();
+	  ctx.beginPath();
+	  ctx.arc(0, 0, radius*0.03, 0, 2*Math.PI);
+	  ctx.fillStyle = '#888';
+	  ctx.fill();
+	}
+	
+	function drawNumbers(ctx, radius) {
+	  var ang;
+	  var num;
+	  
+	  ctx.font = radius*0.1 + "px arial";
+	  ctx.textBaseline="middle";
+	  ctx.textAlign="center";
+	  for(num = 1; num < 13; num++){
+	    ang = num * Math.PI / 6;
+	    ctx.rotate(ang);
+	    ctx.translate(0, -radius*0.85);
+	    ctx.rotate(-ang);
+	    ctx.fillText(num.toString(), 0, 0);
+	    ctx.rotate(ang);
+	    ctx.translate(0, radius*0.85);
+	    ctx.rotate(-ang);
+	  }
+	  
+	}
+	
+	function drawStop(ctx, radius) {
+	  var ang;
+	  //var num;
+	  var stop = '·';
+	  ctx.font = radius*0.1 + "px arial";
+	  ctx.textBaseline="middle";
+	  ctx.textAlign="center";
+	  for(let i = 1; i < 61; i++){
+	    ang = i * Math.PI / 30;
+	    ctx.rotate(ang);
+	    ctx.translate(0, -radius*0.75);
+	    ctx.rotate(-ang);
+	    ctx.fillText(stop.toString(), 0, 0);
+	    ctx.rotate(ang);
+	    ctx.translate(0, radius*0.75);
+	    ctx.rotate(-ang);
+	  }
+	}
+	
+	function drawTime(ctx, radius){
+	    var now = new Date();
+	    var hour = now.getHours();
+	    var minute = now.getMinutes();
+	    var second = now.getSeconds();
+	    //hour
+	    hour=hour%12;
+	    hour=(hour*Math.PI/6)+
+	    (minute*Math.PI/(6*60))+
+	    (second*Math.PI/(360*60));
+	    drawHand(ctx, hour, radius*0.5, radius*0.03);
+	    //minute
+	    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+	    drawHand(ctx, minute, radius*0.6, radius*0.02);
+	    // second
+	    second=(second*Math.PI/30);
+	    drawHand(ctx, second, radius*0.7, radius*0.015);
+	}
+	
+	function drawHand(ctx, pos, length, width) {
+	    ctx.beginPath();
+	    ctx.lineWidth = width;
+	    ctx.lineCap = "round";
+	    ctx.moveTo(0,0);
+	    ctx.rotate(pos);
+	    ctx.lineTo(0, -length);
+	    ctx.stroke();
+	    ctx.rotate(-pos);
+	}
+</script>
+</body>
+</html>

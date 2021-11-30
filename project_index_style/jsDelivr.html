@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Github to JSDelivr</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/crotel/dev@7ac2ec1/jsdelivr.png">
+    <style type="text/css">
+    .intro {
+        margin: .5em 0;
+    }
+
+    .jsDelivr,
+    .ex,
+    .main {
+        margin: 1em 0;
+    }
+
+    .jsDelivr>img {
+        margin: 0 0 10px;
+    }
+
+    .git .head {
+        display: flex;
+        align-items: center;
+        margin: 0 0 .5em;
+    }
+
+    .git .head span {
+        font-size: 1.3em;
+        font-weight: 500;
+        display: inline-block;
+        margin: 0 0 0 6px;
+    }
+
+    .ex ul li {
+        word-break: break-all;
+    }
+
+    .gitlink.invalid {
+        border-color: #ffaf86;
+        box-shadow: 0 0 0 0.2rem rgba(234, 121, 55, 0.25);
+    }
+
+    .footer {
+        padding: 1em 0;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .embed-label {
+        display: inline-block;
+        margin: 10px 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-xl-12 col-sm-12 col-md-12">
+                <div class="head">
+                    <h1 class="text-center intro">Migrating from GitHub to jsDelivr</h1>
+                    <p class="text-center">
+                        <legend>jsDelivr is a free, fast, and reliable Open Source CDN for npm and GitHub.
+                            Most GitHub links can be easily converted to jsDelivr links.</legend>
+                    </p>
+                </div>
+                <div class="main">
+                    <div class="git">
+                        <div class="head">
+                            <svg width="25" height="25" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg> <span>Github</span>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12 col-sm-12 col-md-12">
+                                <input type="text" class="form-control gitlink" id="g" placeholder="Github file URL">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jsDelivr">
+                       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="25" viewBox="0 0 32 34" version="1.1">
+    <title>jsDelivr</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="jsDelivr" fill-rule="nonzero">
+            <g id="Group">
+                <polygon id="Path" fill="#BD483B" points="15.386 0.338 12.28 11.376 12.28 11.48 12.28 22.519 15.386 33.662 15.386 33.662 18.58 22.519 18.58 11.48 18.58 11.376"/>
+                <g id="Path">
+                    <g>
+                        <polyline fill="#E64E3D" points="15.386 0.338 0 5.88 2.186 26.372 15.386 33.662"/>
+                        <polyline fill="#BD483B" points="15.386 33.662 28.654 26.297 31.137 5.807 15.386 0.338"/>
+                    </g>
+                    <g transform="translate(6.000000, 6.000000)">
+                        <path d="M6.594,19.088 C5.08,18.615 3.73,17.771 2.654,16.657 L2.651,16.655 C2.52,16.518 2.394,16.381 2.27,16.237 C1.432,15.258 0.792,14.107 0.413,12.841 C0.664,13.074 0.931,13.288 1.209,13.488 L1.209,13.488 C1.212,13.496 1.217,13.504 1.22,13.515 C1.217,13.503 1.212,13.495 1.209,13.488 C1.607,13.767 2.031,14.014 2.478,14.225 C2.619,14.289 2.76,14.35 2.905,14.411 C3.082,14.481 3.265,14.546 3.447,14.606 C3.458,14.612 3.471,14.612 3.482,14.616 C3.514,14.628 3.547,14.639 3.579,14.649 C3.653,15.405 4.228,16.021 4.969,16.153 C5.256,17.31 5.802,18.299 6.594,19.088 Z" fill="#FEC82F"/>
+                        <path d="M7.174,5.794 C7.174,6.118 7.262,6.421 7.417,6.677 C6.167,8.43 5.309,10.333 4.938,12.216 C4.897,12.425 4.861,12.632 4.833,12.835 C4.404,12.948 4.043,13.228 3.817,13.597 C3.804,13.597 3.793,13.593 3.782,13.587 C3.759,13.581 3.742,13.573 3.721,13.566 C3.579,13.521 3.44,13.468 3.304,13.414 C3.1,13.334 2.901,13.24 2.706,13.142 C2.043,12.804 1.446,12.37 0.925,11.851 C0.815,11.74 0.712,11.632 0.614,11.519 L0.573,11.47 C0.535,11.425 0.495,11.378 0.458,11.333 C0.441,11.312 0.426,11.294 0.411,11.274 C0.397,11.256 0.387,11.243 0.374,11.229 C0.369,11.219 0.361,11.213 0.357,11.206 C0.337,11.184 0.32,11.159 0.304,11.138 C0.296,11.126 0.287,11.116 0.281,11.109 C0.28,11.105 0.279,11.105 0.277,11.101 C0.264,11.087 0.253,11.068 0.24,11.052 C0.185,10.98 0.133,10.903 0.083,10.827 C0.074,10.815 0.064,10.803 0.058,10.788 C0.052,10.782 0.043,10.77 0.038,10.761 C0.024,10.558 0.018,10.353 0.018,10.144 C0.018,8.262 0.575,6.508 1.53,5.039 C1.643,4.863 1.765,4.691 1.891,4.525 C2.011,4.365 2.136,4.206 2.265,4.058 C3.391,2.741 4.875,1.743 6.564,1.211 C6.59,1.393 6.623,1.578 6.659,1.764 C6.851,2.731 7.172,3.706 7.608,4.662 C7.337,4.962 7.174,5.36 7.174,5.794 Z" fill="#FEC82F"/>
+                        <path d="M6.176,14.479 C6.176,14.7 6.097,14.903 5.964,15.059 C5.935,15.096 5.903,15.127 5.868,15.159 C5.707,15.3 5.5,15.384 5.272,15.384 C5.099,15.384 4.937,15.335 4.8,15.249 C4.653,15.159 4.535,15.03 4.458,14.874 C4.4,14.753 4.369,14.622 4.369,14.479 C4.369,14.219 4.479,13.985 4.655,13.821 C4.684,13.794 4.715,13.77 4.746,13.747 C4.894,13.64 5.077,13.577 5.272,13.577 C5.478,13.577 5.667,13.645 5.818,13.763 C5.903,13.826 5.973,13.902 6.031,13.992 C6.125,14.129 6.176,14.299 6.176,14.479 Z" fill="#FEC82F"/>
+                        <path d="M9.777,5.794 C9.777,5.941 9.745,6.075 9.683,6.197 C9.535,6.496 9.227,6.699 8.875,6.699 C8.831,6.699 8.788,6.697 8.747,6.693 C8.739,6.689 8.731,6.689 8.722,6.687 C8.339,6.621 8.038,6.318 7.981,5.931 C7.974,5.888 7.971,5.841 7.971,5.794 C7.971,5.692 7.988,5.593 8.021,5.499 C8.144,5.145 8.481,4.893 8.875,4.893 L8.877,4.893 C8.889,4.893 8.901,4.893 8.913,4.893 C9.305,4.911 9.633,5.178 9.74,5.538 C9.765,5.62 9.777,5.706 9.777,5.794 Z" fill="#FEC82F"/>
+                        <path d="M18.752,10.143 C18.752,11.05 18.623,11.925 18.384,12.753 C17.585,12.542 16.778,12.233 15.984,11.839 C16.006,11.73 16.017,11.618 16.017,11.503 C16.017,11.278 15.973,11.061 15.892,10.864 C15.923,10.835 15.956,10.803 15.987,10.77 C16.944,9.793 17.75,8.715 18.391,7.558 C18.625,8.379 18.752,9.248 18.752,10.143 Z" fill="#DF9C26"/>
+                        <path d="M17.881,6.196 C17.818,6.335 17.75,6.473 17.68,6.612 C17.053,7.847 16.225,8.994 15.221,10.019 C15.212,10.029 15.201,10.039 15.193,10.046 C14.938,9.89 14.636,9.802 14.314,9.802 C13.939,9.802 13.592,9.925 13.31,10.13 C12.796,9.726 12.299,9.282 11.82,8.803 C11.212,8.199 10.663,7.556 10.173,6.894 C10.425,6.597 10.578,6.214 10.578,5.792 C10.578,5.479 10.491,5.182 10.341,4.93 C11.551,3.767 12.888,2.824 14.258,2.142 C15.83,3.103 17.099,4.514 17.881,6.196 Z" fill="#DF9C26"/>
+                        <path d="M15.217,11.503 C15.217,11.882 14.987,12.204 14.661,12.339 C14.553,12.384 14.436,12.409 14.313,12.409 C14.25,12.409 14.188,12.401 14.128,12.389 C13.743,12.307 13.447,11.981 13.413,11.584 C13.424,11.574 13.434,11.568 13.441,11.562 C13.431,11.554 13.42,11.548 13.411,11.539 C13.41,11.527 13.41,11.517 13.41,11.502 C13.41,11.113 13.66,10.779 14.011,10.652 C14.106,10.619 14.207,10.599 14.313,10.599 C14.403,10.599 14.492,10.613 14.575,10.638 C14.921,10.743 15.181,11.05 15.215,11.423 C15.217,11.45 15.217,11.478 15.217,11.503 Z" fill="#DF9C26"/>
+                        <path d="M15.452,12.767 C15.151,13.041 14.752,13.207 14.313,13.207 C13.962,13.207 13.636,13.1 13.364,12.918 C13.325,12.943 13.286,12.969 13.249,12.99 C12.016,13.771 10.711,14.342 9.385,14.688 L9.385,19.512 C13.272,19.512 16.607,17.142 18.025,13.768 C17.166,13.531 16.302,13.195 15.452,12.767 Z" fill="#DF9C26"/>
+                        <path d="M9.386,14.688 C8.593,14.893 7.795,15.018 7.001,15.055 C6.959,15.057 6.915,15.061 6.873,15.063 C6.722,15.473 6.419,15.807 6.034,16.003 C6.279,16.912 6.722,17.701 7.353,18.33 C7.877,18.854 8.515,19.25 9.244,19.51 C9.29,19.51 9.337,19.512 9.386,19.512 L9.386,14.688 L9.386,14.688 Z" fill="#FEC82F"/>
+                        <path d="M12.612,11.503 C12.612,11.331 12.638,11.163 12.686,11.005 C12.124,10.565 11.58,10.085 11.061,9.563 C10.447,8.949 9.889,8.301 9.386,7.629 L9.386,13.575 C10.51,13.251 11.621,12.752 12.677,12.086 C12.686,12.08 12.697,12.072 12.707,12.064 C12.646,11.89 12.612,11.7 12.612,11.503 Z" fill="#DF9C26"/>
+                        <path d="M9.386,7.629 C9.341,7.57 9.295,7.516 9.254,7.455 C9.131,7.484 9.005,7.498 8.876,7.498 C8.649,7.498 8.435,7.453 8.239,7.375 C7.105,8.981 6.327,10.716 5.989,12.424 C5.957,12.586 5.93,12.744 5.906,12.899 C6.383,13.094 6.754,13.495 6.902,13.991 C6.918,13.987 6.931,13.987 6.948,13.987 C7.757,13.948 8.575,13.807 9.386,13.575 L9.386,7.629 Z" fill="#FEC82F"/>
+                        <path d="M9.386,0.778 L9.386,4.172 C9.434,4.188 9.484,4.205 9.531,4.227 C10.637,3.154 11.847,2.248 13.104,1.546 C11.964,1.05 10.705,0.778 9.386,0.778 Z" fill="#DF9C26"/>
+                        <path d="M9.386,0.778 C8.778,0.778 8.185,0.833 7.613,0.946 C7.638,1.143 7.673,1.35 7.714,1.552 C7.882,2.412 8.163,3.277 8.543,4.127 C8.649,4.107 8.762,4.094 8.876,4.094 C9.054,4.094 9.223,4.121 9.386,4.172 L9.386,0.778 L9.386,0.778 Z" fill="#FEC82F"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+                        <span>jsDelivr</span><p>
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12 col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="o" placeholder="Direct link with lastest commit (long hash)" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c1">COPY</button>
+                                        <button class="btn btn-primary" id="t1">TEST</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="r" placeholder="Direct link with lastest commit (short hash)" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c2">COPY</button>
+                                        <button class="btn btn-primary" id="t2">TEST</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="m" placeholder="Direct link without lastest commit" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c3">COPY</button>
+                                        <button class="btn btn-primary" id="t3">TEST</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="embed">
+                        <span class="embed-label"><strong>Embedded code</strong></span>
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12 col-sm-12 col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="n" placeholder="Embedded code with lastest commit (long hash)" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c4">COPY</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="t" placeholder="Embedded code with lastest commit (short hash)" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c5">COPY</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-10 col-xl-10 col-sm-10 col-md-10">
+                                        <input type="text" class="form-control" id="p" placeholder="Embedded code without lastest commit" readonly="">
+                                    </div>
+                                    <div class="col-lg-2 col-xl-2 col-sm-2 col-md-2">
+                                        <button class="btn btn-success" id="c6">COPY</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btngroup">
+                    <button class="btn btn-danger" id="x">RESET</button>
+                </div>
+                <div class="ex">
+                    <h5>Valid URL</h5>
+                    <ul>
+                        <li>Github file URL: <b>https://github.com/twbs/bootstrap/blob/v4-dev/dist/css/bootstrap.min.css</b></li>
+                        <li>Github file URL: <b>https://github.com/twbs/bootstrap/raw/v4-dev/dist/css/bootstrap.min.css</b></li>
+                        <li>Github file URL: <b>https://github.com/twbs/bootstrap/blame/v4-dev/dist/css/bootstrap.min.css</b></li>
+                        <li>Github raw file URL: <b>https://raw.githubusercontent.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.min.css</b></li>
+                    </ul>
+                </div>
+                <div class="footer text-center">
+                    @ <span class="year"></span> WTFPL
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    const giturl = /^https?:\/\/github\.com\/(.+?)\/(.+?)\/(?!releases\/)(?:(?:blob|raw|blame)\/)?(.+?)\/(.+)/i,
+        rawgit = /^https?:\/\/raw\.github(?:usercontent)?\.com\/(.+?)\/(.+?)\/(.+?)\/(.+)/i;
+    (function(doc) {
+        doc.getElementsByClassName("gitlink")[0].focus();
+        doc.getElementsByClassName("year")[0].innerHTML = new Date().getFullYear();
+
+        var a = () => {
+            let t = doc.getElementsByClassName("gitlink")[0].value;
+            let y = t.match(giturl),
+                l = t.match(rawgit);
+
+            var n = (e, i) => {
+                doc.getElementsByClassName("gitlink")[0].classList.remove("invalid");
+                let n = `https://api.github.com/repos/${i[1]}/${i[2]}/commits/${i[3]}`;
+                fetch(n)
+                    .then(r => r.json())
+                    .then(i => {
+                        let n = i.sha,
+                            c = t.replace(e, `https://cdn.jsdelivr.net/gh/$1/$2@${n}/$4`),
+                            d = t.replace(e, `https://cdn.jsdelivr.net/gh/$1/$2/$4`),
+                            k = t.replace(e, `https://cdn.jsdelivr.net/gh/$1/$2@${n.substring(0,7)}/$4`),
+                            q = t.split("/").pop();
+                        doc.getElementById("o").value = c;
+                        doc.getElementById("m").value = d;
+                        doc.getElementById("r").value = k;
+                        if (q.indexOf(".js") != -1) {
+                            doc.getElementById("n").value = `<script src="${c}" type="text/javascript"><\/script>`;
+                            doc.getElementById("p").value = `<script src="${d}" type="text/javascript"><\/script>`;
+                            doc.getElementById("t").value = `<script src="${k}" type="text/javascript"><\/script>`;
+                        };
+                        if (q.indexOf(".css") != -1) {
+                            doc.getElementById("n").value = `<link href="${c}" rel="stylesheet" type="text/css"/>`;
+                            doc.getElementById("p").value = `<link href="${d}" rel="stylesheet" type="text/css"/>`;
+                            doc.getElementById("t").value = `<link href="${k}" rel="stylesheet" type="text/css"/>`;
+                        };
+                        if (q.indexOf(".png") != -1 || q.indexOf(".jpg") != -1 || q.indexOf(".gif") != -1 || q.indexOf(".svg") != -1 || q.indexOf(".jpeg") != -1) {
+                            doc.getElementById("n").value = `<img src="${c}">`;
+                            doc.getElementById("p").value = `<img src="${d}">`;
+                            doc.getElementById("t").value = `<img src="${k}">`;
+                        };
+                    })
+                    .catch(e => console.error(e))
+            }
+            giturl.test(t) ? n(giturl, y) : rawgit.test(t) ? n(rawgit, l) : doc.getElementsByClassName("gitlink")[0].classList.add("invalid")
+        }
+
+        var b = id => {
+            doc.getElementById(id).value.length > 0 ? (doc.getElementById(id).select(), doc.execCommand("copy")) : alert("Nothing to copy !")
+        }
+
+        var c = id => {
+            doc.getElementById(id).value.length > 0 ? window.open(doc.getElementById(id).value) : (alert("Nothing to test !"))
+        }
+        doc.getElementById("x").addEventListener("click", () => {
+            doc.getElementById("g").focus();
+            let a = doc.querySelectorAll("#g,#o,#m,#n,#p,#t,#r");
+            for (let i = 0; i < a.length; i++) {
+                a[i].value = "";
+            };
+        })
+        doc.getElementById("c1").addEventListener("click", () => {
+            b("o");
+        })
+        doc.getElementById("c2").addEventListener("click", () => {
+            b("r");
+        })
+        doc.getElementById("c3").addEventListener("click", () => {
+            b("m");
+        })
+        doc.getElementById("c4").addEventListener("click", () => {
+            b("n");
+        })
+        doc.getElementById("c5").addEventListener("click", () => {
+            b("t");
+        })
+        doc.getElementById("c6").addEventListener("click", () => {
+            b("p");
+        })
+        doc.getElementById("t1").addEventListener("click", () => {
+            c("o");
+        })
+        doc.getElementById("t2").addEventListener("click", () => {
+            c("r");
+        })
+        doc.getElementById("t3").addEventListener("click", () => {
+            c("m");
+        })
+        doc.getElementById("g").addEventListener("input", a)
+    })(document);
+    </script>
+</body>
+
+</html>

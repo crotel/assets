@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" charset="UTF-8"/>
+  <title>console</title>
+  <style>
+    * {
+      font-family: 'monospace';
+    }
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .root {
+      width: 100%;
+      height: 100%;
+    }
+    .input {
+      position: relative;
+      width: 100%;
+      height: 70%;
+      background: #003;
+      text-align: center;
+      overflow: auto;
+    }
+      .btns {/*
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;*/
+        text-align: right;
+      }
+      .btns * {
+        display: inline-block;
+        margin: .3rem;
+        padding: .3rem .5rem;
+        border-radius: 5px;
+        border: 1px;
+        font-size: 1em;
+        background: teal;
+      }
+      .input-box {
+        width: 90%;
+        height: 80%;
+        padding: 1%;
+        border: 1% inset silver;
+        font-size: 1em;
+        /*font-family: 'monospace';*/
+        color: silver;
+        background: #002;
+      }
+      
+      .output {
+        position: relative;
+        width: 100%;
+        height: 30%;
+        background: #333;
+      }
+      .output-box {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 94%;
+        height: 94%;
+        margin: auto;
+        padding: 0.2em;
+        border: 1px solid #eee;
+        color: #eee;
+        white-space: pre;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="root">
+      <div class="input">
+        <div class="btns">
+          <button class="test" onclick="test()">test</button>
+          <button class="clear-btn">clear</button>
+          <button class="run-btn">run</button>
+        </div>
+        
+        <textarea class="input-box" autofocus></textarea>
+      </div>
+      
+      <div class="output">
+        <div class="btn-copy"></div>
+        <div class="output-box"></div>
+      </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/gh/Tencent/vConsole/dist/vconsole.min.js"></script>
+    <script>
+      var vConsole = new VConsole();
+      let input = document.querySelector('.input-box');
+      try{
+
+        output = document.querySelector('.output-box'),
+        clearBtn = document.querySelector('.clear-btn'),
+        runBtn = document.querySelector('.run-btn');
+        let result = null;
+
+      // reset console.log, print
+      console.log = function(...args) {
+        output.innerText += args.join(' ') + '\n';
+      }
+      print = console.log;
+      
+      // match input
+      input.oninput = function(evt){
+        return;
+        let couples = {
+          '(': ')',
+          '{': '}',
+          '[': ']',
+          '\'': '\'',
+          '"': '"'
+        }
+        let key = evt.data;
+        if (couples[key]) {
+          this.value += couples[key];
+        }
+        
+        // keyboard right keyCode = 37
+
+      }
+      
+      function test() {
+        try{
+          let rg = document.createRange();
+        //rg.setStart(input, 0);
+       // rg.setEnd(input, 3);
+       rg.selectNode(input)
+       let s = window.getSelection();
+       s.removeAllRanges();
+       s.addRange(rg);
+        //s.collapse(input)
+      }catch(te){print(te)}
+    }
+
+      // run code
+      runBtn.onclick = function() {
+        initEditor();
+        try {
+          result = new Function(input.value);
+          print(result());
+        } catch(e) {
+          output.style.color = 'red';
+          output.innerText = e.stack;
+        }
+      }
+      
+      // clear output
+      clearBtn.onclick = function() {
+        input.value = '';
+        output.innerText = '';
+        input.focus();
+      }
+      
+      // init editor
+      function initEditor() {
+        //input.value = 'console.log("Hello World!")';
+        output.value = input.value;
+        output.style.color = 'gray';
+      }
+      initEditor();
+    } catch(ee) {alert(ee)}
+  </script>
+</body>
+</html>

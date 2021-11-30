@@ -1,0 +1,170 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no"> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <link name="font" rel="stylesheet" href="assets/font_ShareTechMono.css">
+  <link name="dom" rel="stylesheet" type="text/css" href="assets/calendar.css">
+  <script src="assets/jquery.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script> -->
+  <script src="assets/lunar.js"></script>
+</head>
+<body>
+  <div id="cal-wrap">
+    <!-- [PERIOD SELECTOR] -->
+    <div id="cal-date">
+      <input id="cal-set" type="button" value="RESET" />
+      <span id="cal-dth"></span>
+      <select id="cal-mth"></select>
+      <select id="cal-yr"></select>
+    </div>
+
+    <!-- [CALENDAR] -->
+    <div id="cal-container"></div>
+    <div id="cal-bg"></div>
+    <div id='cal-time'>
+      <span id="hour"></span>
+      <!-- <span id='timeSplit' style='visibility: visible;'>:</span> -->
+      <span id="min"></span>
+      <!-- <span id='timeSplit' style='visibility: visible;'>:</span> -->
+      <span id="sec"></span>
+    </div>
+    <!-- [EVENT] -->
+    <div id="cal-event"></div>
+    <div id='cal-lunar'></div>
+    <div class="huangli">
+      <table>
+        <tbody>
+          <tr>
+            <td width="120">公历</td>
+            <td id="c"></td>
+          </tr>
+          <tr>
+            <td>农历</td>
+            <td id="b"></td>
+          </tr>
+          <tr>
+            <td>年</td>
+            <td id="a"></td>
+          </tr>
+          <tr>
+            <td>月</td>
+            <td id="a1"></td>
+          </tr>
+          <tr>
+            <td>日</td>
+            <td id="a2"></td>
+          </tr>
+          <tr>
+            <td>儒略日</td>
+            <td id="a3"></td>
+          </tr>
+          <tr>
+            <td>月名</td>
+            <td id="m"></td>
+          </tr>
+          <tr>
+            <td>月相</td>
+            <td id="yuexiang"></td>
+          </tr>
+          <tr>
+            <td>彭祖百忌</td>
+            <td id="d"></td>
+          </tr>
+          <tr>
+            <td>每日宜忌</td>
+            <td id="yj"><span style="color:green">宜</span><br><span style="color:red">忌</span></td>
+          </tr>
+          <tr>
+            <td>吉神宜趋</td>
+            <td id="js"></td>
+          </tr>
+          <tr>
+            <td>凶煞宜忌</td>
+            <td id="xs"></td>
+          </tr>
+          <tr>
+            <td>相冲</td>
+            <td id="e"></td>
+          </tr>
+          <tr>
+            <td>岁煞</td>
+            <td id="f"></td>
+          </tr>
+          <tr>
+            <td>星宿</td>
+            <td id="g"></td>
+          </tr>
+          <tr>
+            <td>星宿歌诀</td>
+            <td id="g1"></td>
+          </tr>
+          <tr>
+            <td>贵神方位</td>
+            <td id="h"></td>
+          </tr>
+          <tr>
+            <td>喜神方位</td>
+            <td id="i"></td>
+          </tr>
+          <tr>
+            <td>福神方位</td>
+            <td id="i1"></td>
+          </tr>
+          <tr>
+            <td>财神方位</td>
+            <td id="i2"></td>
+          </tr>
+          <tr>
+            <td>本月胎神</td>
+            <td id="i3"></td>
+          </tr>
+          <tr>
+            <td>今日胎神</td>
+            <td id="i4"></td>
+          </tr>
+          <tr>
+            <td>值星</td>
+            <td id="j"></td>
+          </tr>
+          <tr>
+            <td>十二天神</td>
+            <td id="k"></td>
+          </tr>
+          <tr>
+            <td>九星</td>
+            <td id="jiuxing"></td>
+          </tr>
+          <tr>
+            <td>九星歌诀</td>
+            <td id="jiuxing-song"></td>
+          </tr>
+          <tr>
+            <td>上一节气</td>
+            <td id="p"></td>
+          </tr>
+          <tr>
+            <td>下一节气</td>
+            <td id="n"></td>
+          </tr>
+          <tr>
+            <td>节日</td>
+            <td id="x"> </td>
+          </tr>
+          <tr>
+            <td>纪念日</td>
+            <td id="y"> </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="times">
+
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="assets/calendar.js"></script>
+</html>

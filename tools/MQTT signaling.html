@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>MQTT signaling</title>
+  <meta charset="urt-8"/>
+<!--   <script src="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.javascript.git/plain/src/mqttws31.js"></script>
+-->
+<script src="https://cdn.jsdelivr.net/gh/eclipse/paho.mqtt.javascript@f585946/src/paho-mqtt.js"></script>
+ </head>
+
+ <body>
+  <button type="button" onclick="startVideo();">Start video</button>
+  <button type="button" onclick="stopVideo();">Stop video</button>
+      
+  <button type="button" onclick="connect();">Connect</button>
+  <button type="button" onclick="hangUp();">Hang Up</button>
+  <br />
+  <div>
+   <video id="local-video" autoplay style="width: 240px; height: 180px; border: 1px solid black;"></video>
+   <video id="remote-video" autoplay style="width: 240px; height: 180px; border: 1px solid black;"></video>
+  </div>
+
+ </body>
+ <script>
+  var localVideo = document.getElementById('local-video');
+  var remoteVideo = document.getElementById('remote-video');
+  var localStream = null;
+  var peerConnection = null;
+  var peerStarted = false;
+  var mediaConstraints = {'mandatory': {'OfferToReceiveAudio':false, 'OfferToReceiveVideo':true }};
+  //var mediaConstraints = {'mandatory': {'OfferToReceiveAudio':true, 'OfferToReceiveVideo':true }};
+  
+  function onSDPText() {
+   var text = textToReceiveSDP.value;
+   if (peerConnection) {
+    onAnswerText(text);
+   }
+   else {
+    onOfferText(text);
+   }
+   textToReceiveSDP.value ="";
+  }
+
+  function onOfferText(text) {
+   console.log("Received offer text...")
+   console.log(text);
+   setOfferText(text);
+   makeAnswer();
+  }
+
+  function onAnswerText(text) {
+   console.log("Received answer text...")
+   console.log(text);
+   setAnswerText(text);
+  }
+
+  function sendSDPText(text) {
+   console.log("---sending sdp text ---");
+   console.log(text);
+
+   textForSendSDP.value = text;
+   textForSendSDP.focus();
+   textForSendSDP.select();
+  }
+
+  // ---------------------- video handling -----------------------
+  // start local video
+  function startVideo() {
+   navigator.webkitGetUserMedia({video: true, audio: false},
+    function (stream) { // success
+     localStream = stream;
+     localVideo.src = window.webkitURL.createObjectURL(stream);
+     localVideo.play();
+     localVideo.volume = 0;
+    },
+    function (error) { // error
+     console.error('An error occurred: [CODE ' + error.code + ']');
+     return;
+    }
+   );
+  }
+
+  // stop local video
+  function stopVideo() {
+   localVideo.src = "";
+   localStream.stop();
+  }
+
+  // ---------------------- connection handling -----------------------
+  function prepareNewConnection() {
+   var pc_config = {"iceServers":[]};
+   var peer = null;
+   try {
+    peer = new webkitRTCPeerConnection(pc_config);
+   } catch (e) {
+    console.log("Failed to create peerConnection, exception: " + e.message);
+   }
+
+   // send any ice candidates to the other peer
+   peer.onicecandidate = function (evt) {
+    if (evt.candidate) {
+     console.log(evt.candidate);
+    } else {
+     console.log("ice event phase =" + evt.eventPhase);
+     sendSDPTextMQTT(peer.localDescription.type, peer.localDescription.sdp);
+    }
+   };
+
+   peer.oniceconnectionstatechange = function() {
+    console.log('ice connection status=' + peer.iceConnectionState + ' gahter=' + peer.iceGatheringState);
+    if ('completed' === peer.iceConnectionState) {
+     console.log("candidate complete");
+    }
+   };
+
+   peer.onsignalingstatechange = function() {
+    console.log('signaling status=' + peer.signalingState);
+   };
+
+   console.log('Adding local stream...');
+   peer.addStream(localStream);
+
+   peer.addEventListener("addstream", onRemoteStreamAdded, false);
+   peer.addEventListener("removestream", onRemoteStreamRemoved, false)
+
+   // when remote adds a stream, hand it on to the local video element
+   function onRemoteStreamAdded(event) {
+    console.log("Added remote stream");
+    remoteVideo.src = window.webkitURL.createObjectURL(event.stream);
+   }
+
+   // when remote removes a stream, remove it from the local video element
+   function onRemoteStreamRemoved(event) {
+    console.log("Remove remote stream");
+    remoteVideo.src = "";
+   }
+
+   return peer;
+  }
+
+  function makeOffer() {
+   unsubscribe("offer");
+   subscribe("answer");
+   peerConnection = prepareNewConnection();
+   peerConnection.createOffer(function (sessionDescription) { // in case of success
+    peerConnection.setLocalDescription(sessionDescription);
+    console.log("Sending: SDP");
+    console.log(sessionDescription);
+   }, function () { // in case of error
+    console.log("Create Offer failed");
+   }, mediaConstraints);
+  }
+
+  function setOfferText(text) {
+   if (peerConnection) {
+    console.error('peerConnection alreay exist!');
+   }
+   peerConnection = prepareNewConnection();
+   var offer = new RTCSessionDescription({
+    type : 'offer',
+    sdp : text,
+   });
+   peerConnection.setRemoteDescription(offer);
+  }
+
+
+  function makeAnswer(evt) {
+   console.log('sending Answer. Creating remote session description...' );
+   if (! peerConnection) {
+    console.error('peerConnection NOT exist!');
+    return;
+   }
+
+   peerConnection.createAnswer(function (sessionDescription) { // in case of success
+    peerConnection.setLocalDescription(sessionDescription);
+    console.log("Sending: SDP");
+    console.log(sessionDescription);
+   }, function () { // in case of error
+    console.log("Create Answer failed");
+   }, mediaConstraints);
+  }
+
+  function setAnswerText(text) {
+   if (! peerConnection) {
+    console.error('peerConnection NOT exist!');
+    return;
+   }
+   var answer = new RTCSessionDescription({
+    type : 'answer',
+    sdp : text,
+   });
+   peerConnection.setRemoteDescription(answer);
+  }
+
+
+  // -------- handling user UI event -----
+  // start the connection upon user request
+  function connect() {
+   if (!peerStarted && localStream) {
+    makeOffer();
+    peerStarted = true;
+   } else {
+    alert("Local stream not running yet - try again.");
+   }
+  }
+
+  // stop the connection upon user request
+  function hangUp() {
+   console.log("Hang up.");
+   stop();
+  }
+
+  function stop() {
+   peerConnection.close();
+   peerConnection = null;
+   peerStarted = false;
+  }
+
+  // ---------------------------
+  // from 
+  // http://tdoc.info/blog/2014/09/25/mqtt_javascript.html
+
+  var clientId = "web_client_01";
+  var user_name = "msg";
+  var pass = "4xT#su2!wEJc(GE{E7H$2C44~xuRx^{Y";
+  var wsurl = "ws://msg.broker:1883/mqtt"; //ws://lite.mqtt.shiguredo.jp:8080/mqtt
+
+  // connect to MQTT broker
+  var client = new Paho.Client(wsurl, clientId);
+  client.connect({userName: user_name, password: pass, onSuccess:onConnect, onFailure: failConnect});
+
+  function failConnect(e) {
+   console.log("connect failed");
+   console.log(e);
+  }
+
+  function onConnect() {
+   console.log("onConnect");
+   subscribe("offer");
+  }
+
+  function buildTopic(signalingType) {
+   var topic = user_name + '/signaling/' + signalingType;
+   return topic;
+  }
+
+  // callback for receiving message
+  function onMessageArrived(message) {
+   console.log("onMessageArrived:" + message.destinationName + ' -- ' + message.payloadString);
+
+   if (message.destinationName === buildTopic('answer')) {
+    onAnswerText(message.payloadString)
+   }
+   else if (message.destinationName === buildTopic('offer')) {
+    onOfferText(message.payloadString)
+   }
+   else {
+    console.warn('Bad SDP topic');
+   }
+  }
+
+  function subscribe(waitType) {
+   // set callback
+   client.onMessageArrived = onMessageArrived;
+
+   // Subscribe
+   var topic = buildTopic(waitType);
+   client.subscribe(topic);
+  }
+
+  function unsubscribe(waitType) {
+   // UnSubscribe 
+   var topic = buildTopic(waitType);
+   client.unsubscribe(topic);
+  }
+
+  function sendSDPTextMQTT(type, text){
+   var topic = buildTopic(type);
+   message = new Paho.Message(text);
+   message.destinationName = topic;
+   client.send(message);
+  }
+
+ </script>
+</html>

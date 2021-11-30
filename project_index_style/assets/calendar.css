@@ -1,0 +1,153 @@
+/*#cal-wrap { max-width: 600px; }*/
+
+/* [CUSTOM] */
+td.today {
+  border-radius: 15px;
+  background: url(t01a7805144fcb47ee7.gif) no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+div.huangli {
+  position: static;
+  overflow-y: scroll;
+}
+.huangli table {
+  margin: auto;
+}
+.huangli td {
+  border: 1px solid;
+}
+#cal-bg{
+  color: #ddd;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  top: 8%;
+  font-weight: bold;
+  z-index: -99;
+}
+#cal-time{
+  color: #ddd;
+  position: static;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  z-index: -99;
+}
+#cal-time span:not(:last-child)::after {
+  content: ' :';
+}
+/*#cal-time #timeSplit {
+  font-size: inherit!important;
+}*/
+.note::after{
+  content: ' *';
+  color: red;
+  position: absolute;
+  /*margin: 0.25em;*/
+}
+
+/* [PERIOD SELECTOR] */
+#cal-date {
+  margin: 1em auto;
+  width: fit-content;
+  display: flex; 
+}
+#cal-mth, #cal-yr, #cal-set {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+}
+#cal-mth, #cal-yr { background: #5d7d9e; }
+/*#cal-set { background: #4e83d9; }*/
+/* [CALENDAR] */
+#calendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+#calendar tr.head td {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  padding: 0; 
+  text-align: center;
+}
+#calendar tr.day td {
+  width: 14.28%;
+  padding: 15px 5px;
+  vertical-align: top;
+  text-align: center;
+}
+#calendar tr.day td:hover {
+  background: rgb(93, 121, 158);
+  border-radius: 15px;
+  cursor: pointer;
+}
+#calendar tr.day td:hover > .dd{
+  color: white;
+}
+#calendar tr td.blank:hover {
+  background:transparent!important;
+  cursor: default!important;
+}
+#calendar .dd{
+  font-size: 1.2em;
+  color: black;
+}
+#calendar .evt {
+  margin-top: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  overflow: hidden;
+  color: #ff5d5d;
+}
+
+/* [ADD/EDIT EVENT] */
+#cal-event form {
+  padding: 15px;
+  margin-top: 20px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+}
+#cal-event h1 {
+  color: #333;
+  padding: 0;
+  margin: 0;
+}
+#evt-date {
+  color: #999;
+  margin: 10px 0;
+}
+#cal-event textarea {
+  display: block;
+  box-sizing: padding-box;
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  resize: none;
+}
+#cal-event input[type=button], #cal-event input[type=submit] {
+  padding: 10px;
+  margin: 5px;
+  font-size: 1em;
+  border: 0;
+  background: #5d7d9e;
+  border-radius: 15px;
+  color: #fff;
+}
+
+/* [DOES NOT MATTER] */
+* {
+  font-family: 'Share Tech Mono', monospace;
+}
+html{
+  max-width: 100%;
+  /*overflow: hidden;*/
+}
+body {
+  content: '111';
+}

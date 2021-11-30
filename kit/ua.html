@@ -1,0 +1,65 @@
+<html><body></body>
+<script>
+const json = `{
+	"Navigator": {
+		"appCodeName": "${navigator.appCodeName}",
+		"appName": "${navigator.appName}",
+		"appVersion": "${navigator.appVersion}",
+		"cookieEnabled": "${navigator.cookieEnabled}",
+		"language": "${navigator.language}",
+		"maxTouchPoints": "${navigator.maxTouchPoints}",
+		"onLine": "${navigator.onLine}",
+		"platform": "${navigator.platform}",
+		"product": "${navigator.product}",
+		"productSub": "${navigator.productSub}",
+		"userAgent":"${navigator.userAgent}",
+		"vendor": "${navigator.vendor}"
+	},
+	"UI": {
+		"devicePixelRatio":"${window.devicePixelRatio}",
+		"visualViewport":{
+			"width":"${window.visualViewport.width}",
+			"height":"${window.visualViewport.height}",
+			"offsetLeft":"${window.visualViewport.offsetLeft}",
+			"offsetTop":"${window.visualViewport.offsetTop}",
+			"pageLeft":"${window.visualViewport.pageLeft}",
+			"pageTop":"${window.visualViewport.pageTop}",
+			"scale":"${window.visualViewport.scale}",
+			"onresize":"${window.visualViewport.onresize}",
+			"onscroll":"${window.visualViewport.onscroll}"
+			},
+		"screen":{
+			"width":"${window.screen.width}",
+			"height":"${window.screen.height}",
+			"availWidth":"${window.screen.availWidth}",
+			"availHeight":"${window.screen.availHeight}",
+			"pixelDepth":"${window.screen.pixelDepth}",
+			"availTop":"${window.screen.availTop}",
+			"colorDepth":"${window.screen.colorDepth}"
+			},
+		"status":"${window.status}",
+		"statusbar":{
+			"visible":"${window.statusbar.visible}"
+			},
+		"locationbar":{
+			"visible":"${window.locationbar.visible}"
+			},
+		"origin":"${window.origin}",
+		"innerWidth":"${window.innerWidth}",
+		"innerHeight":"${window.innerHeight}",
+		"outerWidth":"${window.outerWidth}",
+		"outerHeight":"${window.outerHeight}"
+	},
+	"Web Storage":{
+		"localStorage":{
+			"length":"${window.localStorage.length}"
+		},
+		"sessionStorage":{
+			"length":"${window.sessionStorage.length}"
+		}
+
+	}
+}`
+document.writeln(`${json}`)
+</script>
+</html>

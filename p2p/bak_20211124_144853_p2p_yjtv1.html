@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Clappr/Hls.js with P2P Media Loader</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src * blob: data: wss: file: stun: udp: * 'unsafe-inline' 'unsafe-eval';">
+    <!-- <script src="node_modules/p2p-media-loader-core/build/p2p-media-loader-core.js"></script>
+    <script src="node_modules/p2p-media-loader-hlsjs/build/p2p-media-loader-hlsjs.js"></script>
+    <script src="node_modules/@clappr/player/dist/clappr.js"></script> -->
+    <script src="p2p-media-loader-core.js"></script>
+    <script src="p2p-media-loader-hlsjs.js"></script>
+    <script src="clappr.js"></script>
+    <script src="./renderer.js"></script>
+</head>
+<body>
+    <div id="player"></div>
+    <div id="status">
+        <br>
+        isP2PSupported: <span id="isP2PSupported"></span>
+        <span id="stunCheck" style="float: right">STUN/TURN SERVER STATS:<br><br></span>
+        <br><br>
+        Data downloaded from Main: <span id="dataDownCdn">0</span> MB
+        <br>
+        Connected peers: <span id="peerCount">0</span>
+        <br>
+        Data downloaded via p2p: <span id="dataDownP2p">0</span> MB
+        <br>
+        Data uploaded via p2p: <span id="dataUpP2p">0</span> MB
+
+    </div>
+
+        <script>
+            var bytesDownCdn = 0;
+            var bytesDownP2p = 0;
+            var bytesUpP2p = 0;
+            var peerCount = 0;
+
+            let availWidth = document.querySelector('#player').offsetWidth;
+            let availHeight = screen.availWidth / 2 / 16 * 9;
+
+
+            const checkStun = (stunURL)=>{
+                //const stunURL = `stun:stun.broker:5349`;
+                // const stunURL = e;
+                function checkTurnOrStun(turnConfig, timeout){ 
+                  return new Promise(function(resolve, reject){
+
+                    setTimeout(function(){
+                        if(promiseResolved){
+                            if (promiseResolved == 'STUN') resolve('STUN');
+                            return;
+                        }
+                        resolve(false);
+                        promiseResolved = true;
+                    }, timeout || 5000);
+
+                    var promiseResolved = false
+                //compatibility for firefox and chrome
+                , myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection   
+                , pc = new myPeerConnection({iceServers:[turnConfig]})
+                , noop = function(){};
+                //create a bogus data channel
+                pc.createDataChannel("");    
+                pc.createOffer(function(sdp){
+                // sometimes sdp contains the ice candidates...
+                if(sdp.sdp.indexOf('typ relay') > -1){ 
+                    promiseResolved = 'TURN'; 
+                    resolve(true);
+                }
+                pc.setLocalDescription(sdp, noop, noop);
+                // create offer and set local description
+            }, noop);    
+                //listen for candidate events
+                pc.onicecandidate = function(ice){  
+                  if( !ice || !ice.candidate || !ice.candidate.candidate)  return;
+                  if (ice.candidate.candidate.indexOf('typ relay')!=-1) { promiseResolved = 'TURN'; resolve('TURN'); }
+                  else if (!promiseResolved && (ice.candidate.candidate.indexOf('typ prflx')!=-1 || ice.candidate.candidate.indexOf('typ srflx')!=-1)){
+                      promiseResolved = 'STUN';
+                      if (turnConfig.url.indexOf('turn:')!==0) resolve('STUN');
+                  }
+                  else return;
+              };
+          });   
+              };
+
+                // checkTurnOrStun({"url": stunURL}).then(function(result){
+                //     console.log(
+                //     result ? 'YES, Server active as '+result : 'NO, server not active');
+                // }).catch(console.error.bind(console));
+
+                checkTurnOrStun({
+                    url: stunURL,
+                    credential: '',
+                    username: ''
+                }).then(function(result){
+                    // console.log(
+                    //     result ? stunURL.split(':')[1] + ' is active as '+result : stunURL.split(':')[1] + ' was not active');
+                    document.querySelector("#status > #stunCheck").innerHTML += result ? result + ' SERVER: <span style="font-style: italic;color:green;">' + stunURL.split(':')[1].toLocaleUpperCase() + '</span><span style="float:right;padding-left: 0.5rem;"> was UP</span><br>' : '<span style="font-style: italic;color:red">' + stunURL.split(':')[1].toLocaleUpperCase() + '</span><span style="float:right;padding-left: 0.5rem;"> was down</span><br>';
+                }).catch(console.error.bind(console));
+            }
+
+
+            this.isP2PSupported = p2pml.core.HybridLoader.isSupported();
+            this.liveSyncDurationCount = 7;
+
+            this.engine = this.isP2PSupported ? new p2pml.hlsjs.Engine() : undefined;
+            console.log("isP2PSupported: " + isP2PSupported);
+
+
+
+
+            // const player = new Clappr.Player({
+            //     parentId: "#player",
+            //     source: "https://live.yjtvw.com:8081/live/mp4:yjtv1.stream_540p/playlist.m3u8",
+            //     mute: true,
+            //     autoPlay: true,
+            //     playback: {
+            //         hlsjsConfig: {
+            //             liveSyncDurationCount: 7,
+            //             loader: engine.createLoaderClass()
+            //         }
+            //     },
+            //     // 
+            // });
+            // player.resize({height: `${availHeight}`, width: `${availWidth}`});
+
+            
+            // document.querySelector('#player').setAttribute("style",`width:${availWidth};height:${availHeight}`);
+            // document.querySelector('#status').innerText = "Yeah! Your browser support p2p hls.";
+
+            if (p2pml.hlsjs.Engine.isSupported()) {
+                // var engine = new p2pml.hlsjs.Engine();
+
+                var player = new Clappr.Player({
+                    parentId: "#player",
+                    source: "https://live.yjtvw.com:8081/live/mp4:yjtv1.stream_540p/playlist.m3u8",
+                    mute: true,
+                    autoPlay: true,
+                    playback: {
+                        hlsjsConfig: {
+                            liveSyncDurationCount: this.liveSyncDurationCount,
+                            loader: engine.createLoaderClass()
+                        }
+                    },
+                // 
+            });
+                player.resize({height: `${availHeight}`, width: `${availWidth}`});
+
+                p2pml.hlsjs.initClapprPlayer(player);
+                // document.querySelector('#version').innerText = `hls.js version: ${Hls.version}  cdnbye version: ${Hls.engineVersion}`;
+                document.querySelector('#player').setAttribute("style",`width:${availWidth};height:${availHeight}`);
+                document.querySelector('#status > #isP2PSupported').innerHTML = "ture";
+                document.querySelector('#status > #isP2PSupported').setAttribute('style','color:green;');
+
+
+
+                if (this.isP2PSupported) {
+                    this.engine.on(p2pml.core.Events.PieceBytesDownloaded, onBytesDownloaded);
+                    this.engine.on(p2pml.core.Events.PieceBytesUploaded, onBytesUploaded);
+
+                    this.engine.on(p2pml.core.Events.PeerConnect, onPeerConnect);
+                    this.engine.on(p2pml.core.Events.PeerClose, onPeerClose);
+
+                    var trackerAnnounce = this.engine.getSettings().loader.trackerAnnounce;
+                    // let stunNode =[];
+                    for (let i of this.engine.getSettings().loader.rtcConfig.iceServers) {
+                        checkStun(i.urls);
+                        // stunNode.push(i.urls);
+                        // console.log(stunNode)
+                    };
+                    // console.log(stunNode);
+                    console.log(this.engine.getSettings().loader.trackerAnnounce);
+                }
+            } else {
+                var player = new Clappr.Player({source: "https://live.yjtvw.com:8081/live/mp4:yjtv1.stream_540p/playlist.m3u8", parentId: "#player",autoPlay: true,});
+                player.resize({height: `${availHeight}`, width: `${availWidth}`});
+                document.querySelector('#status > #isP2PSupported').innerText = "false";
+                document.querySelector('#status > #isP2PSupported').setAttribute("style","color:red;");
+
+            };
+
+            function onBytesDownloaded(method, bytes){
+                if (method == "http"){
+                    bytesDownCdn += bytes;
+                    document.querySelector("#status > #dataDownCdn").innerHTML = bytesDownCdn / 1000000;
+                }
+                else if (method == "p2p"){
+                    bytesDownP2p += bytes;
+                    document.querySelector("#status > #dataDownP2p").innerHTML = bytesDownP2p / 1000000;
+                }
+            }
+
+            function onBytesUploaded(method, bytes){
+                if (method == "p2p"){
+                    bytesUpP2p += bytes;
+            //console.log("bytesUpP2p: " + bytesUpP2p);
+            document.querySelector("#status > #dataUpP2p").innerHTML = bytesUpP2p / 1000000;
+        }
+    }
+
+    function onPeerConnect(peer){
+        peerCount ++;
+        document.querySelector("#status > #peerCount").innerHTML = peerCount.toString();
+    }
+
+    function onPeerClose(peer){
+        peerCount --;
+        document.querySelector("#status > #peerCount").innerHTML = peerCount;
+    }
+</script>
+
+</body>
+</html>

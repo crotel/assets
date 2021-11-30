@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "size" : "512x512",
+      "idiom" : "iTunes",
+      "filename" : "iTunes-Icon-512x512@1x.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "iTunes",
+      "filename" : "iTunes-Icon-512x512@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "iTunes",
+      "filename" : "iTunes-Icon-512x512@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "QuickIcon"
+  }
+}

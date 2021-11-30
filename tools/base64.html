@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image to Canvas</title>
+    <meta charset="utf-8"/>
+    <script type="text/javascript">
+    var reader = new FileReader();
+    var img = new Image();
+    var p = document.createElement('p');
+    var desc = document.createElement('p');
+    var pre = document.createElement('pre');
+    var span = document.createElement('span');
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    var dataurl = null;
+//     var start = performance.now();
+
+
+    function getImageFromLink(link) {
+        return new Promise(function(resolve) {
+            var image = new Image();
+            image.src = link;
+            image.onload = function() {
+                resolve(image);
+            };
+        });
+    }
+
+    function resizeImageToBlob(image, width, height, mime) {
+        return new Promise(function(resolve) {
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+            return canvas.toBlob(resolve, mime);
+        });
+    }
+        
+    function resizeImageToDataURL(image, width, height, mime) {
+        return new Promise(function(resolve) {
+            var canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+//             return canvas.toBlob(resolve, mime);
+            return canvas.toDataURL(resolve,"image/png", 0.8); 
+        });
+    }
+
+    getImageFromLink(location.href).then(function(image) {
+        // calculate these based on the original size
+        var MAX_WIDTH = 400;
+        var MAX_HEIGHT = 400;
+        var width = image.width;
+        var height = image.height;
+        //type = type || 'image/jpeg';
+        //quality = quality || 0.92;
+        if (width > height) {
+            if (width > MAX_WIDTH) {
+                height *= MAX_WIDTH / width;
+                width = MAX_WIDTH;
+            }
+        } else {
+            if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+            }
+        }
+//         canvas.width = width;
+//         canvas.height = height;
+//         var width = image.width / 4;
+//         var height = image.height / 4;
+        return resizeImageToDataURL(image, width, height, 'image/png');
+    })
+        .then(function(blob) {
+        // Do something with the result Blob object
+        document.querySelector('img').src = URL.createObjectURL(blob);
+    });
+    async function itc(files) {
+        var start = performance.now();
+        try
+        {
+
+            reader.onload = async function(e) {
+
+                // var img = document.createElement('img');
+                // result.value = e.target.result;
+                //img.setAttribute('style','max-width: 300px;box-sizing: content-box;display: inline-block;')
+                img.setAttribute('src', e.target.result);
+                img.onload = async function() {
+
+                    //ctx.drawImage(img, 0, 0);
+
+                    var MAX_WIDTH = 400;
+                    var MAX_HEIGHT = 400;
+                    var width = img.width;
+                    var height = img.height;
+                    //type = type || 'image/jpeg';
+                    //quality = quality || 0.92;
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    //canvas.imageSmoothingEnabled = false;
+                    //canvas.webkitImageSmoothingEnabled = false;
+                    //canvas.mozImageSmoothingEnabled = false;
+                    ctx.imageSmoothingQuality = "high";
+                    ctx.drawImage(img, 0, 0, width, height);
+                    // return await canvas.toDataURL("image/png", 0.8);
+                    // dataurl = await itc(evt.dataTransfer.files);
+                    dataurl = canvas.toDataURL("image/png", 0.8); //canvas.toDataURL(file.type);
+                    pre.innerText = dataurl; //e.target.result;
+                    pre.setAttribute('style', "max-width: 50vw;max-height: 150px;overflow-y: scroll;white-space: break-spaces;word-break: break-all;word-wrap: break-word;float: right;border: 1px solid #eee;border-radius: 3px;padding: 5px;");
+                    p.appendChild(canvas); //p.appendChild(img);
+                    p.appendChild(pre);
+                    desc.innerText = (performance.now() - start).toFixed(2) + "ms"; //var time = (performance.now() - start).toFixed(2);
+                    p.appendChild(desc);
+                    document.body.querySelector("div#images").appendChild(p);
+//                     if (window.localStorage.getItem("canvas") === null) {
+                        window.localStorage.setItem("canvas", dataurl)
+//                     }
+                }
+            };
+            // console.log(result);
+            return await reader.readAsDataURL(files);
+        } catch (e) {
+            alert('error:' + e);
+        }
+
+    }
+    // } 
+    window.onload = function() {
+        if (window.localStorage.getItem("canvas") !== null) {
+            dataurl = window.localStorage.getItem("canvas");
+            img.setAttribute('src', dataurl);
+                img.onload = async function() {
+                    var MAX_WIDTH = 400;
+                    var MAX_HEIGHT = 400;
+                    var width = img.width;
+                    var height = img.height;
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.imageSmoothingQuality = "high";
+                    ctx.drawImage(img, 0, 0, width, height);
+//                     // return await canvas.toDataURL("image/png", 0.8);
+//                     // dataurl = await itc(evt.dataTransfer.files);
+//                     dataurl = canvas.toDataURL("image/png", 0.8); //canvas.toDataURL(file.type);
+                    pre.innerText = dataurl; //e.target.result;
+                    pre.setAttribute('style', "max-width: 50vw;max-height: 150px;overflow-y: scroll;white-space: break-spaces;word-break: break-all;word-wrap: break-word;float: right;border: 1px solid #eee;border-radius: 3px;padding: 5px;");
+                    p.appendChild(canvas); //
+//                     p.appendChild(img);
+                    p.appendChild(pre);
+                    document.body.querySelector("div#images").appendChild(p);
+        }
+        }
+        //<![CDATA[
+        // function main()
+        // {
+        var dropZone = document.getElementById('dropZone');
+        // 		var result = document.getElementById('result');
+
+        dropZone.addEventListener('dragover', function(evt)
+        {
+            evt.stopPropagation();
+            evt.preventDefault();
+        }, false);
+
+        dropZone.addEventListener('drop', async function(evt)
+        {
+            evt.stopPropagation();
+            evt.preventDefault();
+            if (evt.dataTransfer.files.length > 0) {
+                itc(evt.dataTransfer.files[0])
+            }
+
+
+        }, false);
+
+
+
+    }
+    </script>
+</head>
+<body>
+    <h2>Image to Canvas with resize and base64 encoded </h2>
+    <div id="dropZone" style="width: 300px;height: 300px;border:1px dashed gray;display: inline-flex;float: left;font-size: 15px;font-family: monospace;">Drag image here</div>
+    <!-- 	<span style="margin: calc(150px) auto;height:300px;position: fixed;left: 330px;"> Result =>  </span>
+            	<textarea rows="20" cols="96" id="result" placeholder="No image yet" style="outline:none;width:600px;float: right;height: 300px;display: inline-flex;font-size: 15px;font-family: monospace;"></textarea> -->
+    <div id="images" style="margin-top: 350px;"></div>
+</body>
+</html>
+
+

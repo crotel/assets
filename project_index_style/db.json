@@ -1,0 +1,12 @@
+[
+  {
+    "property" : "<xmp>DataTransferItem.getAsString()</xmp>",
+    "description" : "<xmp>dataTransferItem.getAsString(callback);</xmp>",
+    "method" : "333"
+  },
+  {
+    "property" : "444",
+    "description" : "555",
+    "method" : "666"
+  }
+]

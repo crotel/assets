@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Viewport Meta Tag</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Viewport Meta Tag Description and Example.">
+	<meta name="author" content="crotel">
+	<style type="text/css">	
+		html {
+			margin: 0;
+			padding:0;
+			width: 100vw;
+		}	
+		h1 {
+			text-align:center;
+		}
+		h2 {
+			text-align:center;
+			border:dotted #777 1px;
+			border-top-style:none;
+			width:fit-content;
+			margin:0 auto;
+			padding:5px 1em;
+		}
+		table {
+			width:100%;
+		}
+		td,th {
+			padding-bottom:1em;
+		}
+		tr > td:first-child {
+			width: 20%;
+			padding:1em;
+			text-align:center;
+			border-top:dotted #777 1px;
+		}
+		tr > td:last-child {
+			padding:1em;
+			color:#888;
+			border-left:dotted #777 1px;
+			border-top:dotted #777 1px;
+		}
+		xmp {
+			white-space:normal;
+			margin:0;
+		}
+		#propertyDes , #example , #footerDes{
+			border-top:dotted #777 1px;
+		}
+		#footerDes {
+			margin: 1em 0;
+		}
+		#footerDes > p {
+			padding:0 10%;
+		}
+		footer {
+			text-align: center;
+		}
+		footer > a {
+			color: #888;
+			text-decoration: none;
+			font-size:10px;
+		}
+		footer > a > img {
+			width: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="banner-container">
+				<h1>
+					Viewport Meta Tag 
+				</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div id="propertyDes" class="span12">
+				<h2>
+					Property desctiption 
+				</h2>
+				<p>
+					<table>
+						<tr>
+							<th>Property</th>
+							<th></th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>width</td>
+							<td></td>
+							<td>width property controls the size of the viewport. <br>Property Values can be either device-width or specific pixels.</td>
+						</tr>
+						<tr>
+							<td>initial-scale</td>
+							<td></td>
+							<td>initial-scale property controls the zoom level when the page is first loaded. <br>Property Value can be pixel ratio depends on the display density.</td>
+						</tr>
+						<tr>
+							<td>minimum-scale</td>
+							<td></td>
+							<td>minimum-scale property sets the minimum amount of zoom visitor can do on the page. <br>Property Value can be pixel ratio depends on the display density.</td>
+						</tr>
+						<tr>
+							<td>maximum-scale</td>
+							<td></td>
+							<td>maximum-scale property sets the maximum amount of zoom visitor can do on the page. <br>Property Value can be pixel ratio depends on the display density.</td>
+						</tr>
+						<tr>
+							<td>user-scalable</td>
+							<td></td>
+							<td>user-scalable property allow/disallow the device to zoom in and out. <br>Property Value can be either yes or no.</td>
+						</tr>
+					</table>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div id="example" class="span12">
+				<h2>
+					Example 
+				</h2>
+				<p>
+					<table>
+						<tr>
+							<th>Description</th>
+							<th></th>
+							<th>Method</th>
+						</tr>
+						<tr>
+							<td>Set The Device Width</td>
+							<td></td>
+							<td><xmp> 
+								<meta name="viewport" content="width=device-width">
+							</xmp> <xmp> 
+								<meta name="viewport" content="width=600">
+							</xmp></td>
+						</tr>
+						<tr>
+							<td>Set The Device Height</td>
+							<td></td>
+							<td><xmp> 
+								<meta name="viewport" content="height=device-height">
+							</xmp> <xmp> 
+								<meta name="viewport" content="height=600">
+							</xmp></td>
+						</tr>
+						<tr>
+							<td>Set Initial Scale</td>
+							<td></td>
+							<td><xmp> 
+								<meta name="viewport" content="width=device-width" initial-scale="1.0">
+							</xmp></td>
+						</tr>
+						<tr>
+							<td>Set Minimum and Maximum Scale</td>
+							<td></td>
+							<td><xmp> 
+								<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0">
+							</xmp></td>
+						</tr>
+						<tr>
+							<td>Stop Zooming</td>
+							<td></td>
+							<td><xmp> 
+								<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+							</xmp></td>
+						</tr>
+					</table>
+				</p>
+			</div>
+		</div>
+		<div class="footer">
+			<div id="footerDes" class="span12">
+				<h2>
+					Notice 
+				</h2>
+				<p>
+					<span class='footerNotice'> * It is only recommended if your website is designed responsively while preventing visitor to zoom in and out with user scalable property. </span> 
+				</div>
+			</div>
+			<hr>
+			<footer>
+				<a href="https://www.wtfpl.net/"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAYAAABzyUiPAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AwbFx8sDSuc4wAABHdJREFUWMPtmEFIVFsYx393muxiaGUFFQwDRjOlRRFKRIRkQqt2FS0Co3UrCRNJECSqhftaRJuSFiJBEBRRkyARhE0WSosYq5km0xlKZhqvc+/5v4V5X/W0p+PbPOmDC/d833fuOed/7v1//3MtQPyxki0IIP2N4d27d+ns7GRwcBCA8vJydu3axdatWykrKyOdTvP69WtSqRSrVq2itraWbdu2UV5ezufPnxkeHiaRSABgWRZnz57l4sWLVFRULDvwLMviO34z9vLlSx08eFDf30odOXJEt2/fViaTkeu68jxP375907Nnz3Tp0iXduHFDY2NjKhaL8jxPhUJBQ0NDam9vV1VVlQBZlqWuri5JUiKR0Nq1a/3n/58vzbx18gE0xqilpcVPOHHihIaHhyVJqVRKyWRSyWRSxhhJkud5PvBfvnzx45OTkzLG6Nq1a1q3bp0AhUIh9ff3S5JOnz69PAF89eqVwuGwAEUiEQ0MDEiS+vv7tX//fkUiER0/flzpdFq/2s2bNxWJRBSJRNTa2irP82SMUVtbmz/guXPnJEkvXrxY7ATnjc1lv+b9Gpsvf67+iwLw+vXrCgQC/mKNMTLGqLOz0+/U3Nws13X1+PFj9fb2qre3V5lMRrFYTJWVlQIUjUY1OjoqSYrH4/6m1NXVaXx8fMGTnG9BvwPj32IL8S8WwMAsIY6MjGCMwbZtDhw4gGVZFItFhoaGfNLcvn0709PTdHd3c/LkSc6cOUM8HiccDrN+/XoAPn78SDKZBCAajbJjxw4APnz4wKdPn0oia0k/FbofSXyWyOdq/+ibz79UCwB4nsfExAQAtm2zefNmAKanp8lkMgCsWLGCLVu2AFAsFnFdF9d1AaisrGTNmjUAOI7D169fAVi5ciVVVVUAFAoFcrlcSeDNdV9K/4VsSkkABgIBVq9eDYDruuTzeR+0Wb8xhmw2iyQKhcJPPsdxcBxnRhcFg9i27cdnc4PBIGVlZYuWCIuNlSpFlqQDLcuiuroay7LI5XIMDg7S2NiIbdvs3buXe/fuIYm+vj7evXtHPB4HYGpqip6eHh49esSbN28ACIVChMNhAMbHx3n79i0AGzZsYOPGjUvVW/8ZQPP5fxxjoeBKkmKxmK/RGhsb/Wr7/Plz7du3zydPy7IE6NChQwqFQv8g166uLl/qXL16VcFgUIBOnTq1qCo8F7EvpLCUkvu7qr3gKpzL5XTs2DE/4cKFCz4QDx8+VHNzs2pqarRnzx6dP39e79+/161bt3T06FFFo1E1NDSou7tbjuNIkp48eaL6+noBsm1bPT09y1sHStKdO3e0adOmmfIcCKitrU2JRELGGE1NTSmdTmtsbEz5fF6xWEwjIyOanJxUKpVSNpuVMUaO46ivr08NDQ0/yZ98Pr8sTyLW94b/PV+5coWOjg6KxSIA9fX1NDU1sXPnTmzbZnR0lIGBAR48eEB1dTVNTU3s3r2biooKkskkT58+5f79+2SzWQAOHz7M5cuXqaurW5ZnYevP35il2V+SVBekBnkz6QAAAABJRU5ErkJggg=="> <br>
+				DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE </a> 
+			</footer>
+		</div>
+	</body>
+	</html>

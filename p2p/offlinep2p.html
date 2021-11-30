@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.jsdelivr.net/gh/Novage/offlineplaybackdemo@558791a/assets/p2p-media-loader-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Novage/offlineplaybackdemo@558791a/assets/p2p-media-loader-shaka.min.js"></script>
+
+    <script src="https://github.com/videojs/mux.js/releases/download/v4.4.0/mux.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/2.4.4/shaka-player.compiled.js"></script>
+
+</head>
+<body>
+
+    <video id="video" width="640" controls autoplay muted></video>
+
+    <script>
+        function initIndexedDb() {
+            return new Promise((resolve, reject) => {
+                const request = window.indexedDB.open("assets", 1);
+
+                request.onupgradeneeded = (event) => {
+                    console.info("Upgrading from", event.oldVersion, "to", event.newVersion);
+                    const db = event.target.result;
+
+                    switch (event.oldVersion) {
+                        case 0: { // create DB
+                            db.createObjectStore("assets", { keyPath: ["requestUri", "requestRange", "masterSwarmId"] });
+                            db.createObjectStore("segmentsData", { keyPath: ["id", "masterSwarmId"] });
+                            const segments = db.createObjectStore("segments", { keyPath: ["id", "masterSwarmId"] });
+                            segments.createIndex("masterSwarmId", "masterSwarmId", { multiEntry: true });
+                        } break;
+
+                        default:
+                            throw new Error("unknown database version:", event.oldVersion);
+                    }
+                };
+
+                request.onerror = (event) => reject(event);
+                request.onsuccess = (event) => resolve(event.target.result);
+            });
+        }
+
+        class IdbAssetsStorage {
+            constructor(db) {
+                this.db = db;
+            }
+
+            storeAsset(asset) {
+                return new Promise((resolve, reject) => {
+                    const request = this.db.transaction(["assets"], "readwrite").objectStore("assets")
+                            .put(asset.requestRange === undefined ? {...asset, requestRange: ""} : asset);
+                    request.onerror = (event) => reject(event);
+                    request.onsuccess = (event) => resolve();
+                });
+            }
+
+            getAsset(requestUri, requestRange, masterSwarmId) {
+                return new Promise((resolve, reject) => {
+                    const request = this.db.transaction(["assets"]).objectStore("assets")
+                            .get([requestUri, requestRange === undefined ? "" : requestRange, masterSwarmId]);
+                    request.onerror = (event) => reject(event);
+                    request.onsuccess = (event) => resolve(event.target.result);
+                });
+            }
+
+            destroy() {
+            }
+        }
+
+        class IdbSegmentsStorage {
+            constructor(db) {
+                this.db = db;
+            }
+
+            storeSegment(segment) {
+                return new Promise((resolve, reject) => {
+                    const segmentWithoutData = {...segment};
+                    delete segmentWithoutData.data;
+
+                    const transaction = this.db.transaction(["segments", "segmentsData"], "readwrite")
+                    transaction.objectStore("segments").put(segmentWithoutData).onsuccess = () => {
+                        transaction.objectStore("segmentsData").put({
+                            id: segment.id,
+                            masterSwarmId: segment.masterSwarmId,
+                            data: segment.data
+                        });
+                    }
+
+                    transaction.onerror = (event) => reject(event);
+                    transaction.oncomplete = () => resolve();
+                });
+            }
+
+            getSegmentsMap(masterSwarmId) {
+                return new Promise((resolve, reject) => {
+                    const cursor = this.db.transaction(["segments"]).objectStore("segments").index("masterSwarmId").openCursor(IDBKeyRange.only(masterSwarmId));
+                    const result = new Map();
+
+                    cursor.onerror = (event) => reject(event);
+                    cursor.onsuccess = (event) => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            result.set(cursor.value.id, {segment: cursor.value});
+                            cursor.continue();
+                        } else {
+                            resolve(result);
+                        }
+                    };
+                });
+            }
+
+            getSegment(id, masterSwarmId) {
+                return new Promise((resolve, reject) => {
+                    const transaction = this.db.transaction(["segments", "segmentsData"]);
+
+                    let segment;
+                    transaction.objectStore("segments").get([id, masterSwarmId]).onsuccess = (event) => {
+                        segment = event.target.result;
+                        if (segment === undefined) {
+                            return;
+                        }
+
+                        transaction.objectStore("segmentsData").get([id, masterSwarmId]).onsuccess = (event) => {
+                            segment.data = event.target.result.data;
+                        };
+                    };
+
+                    transaction.onerror = (event) => reject(event);
+                    transaction.oncomplete = () => resolve(segment);
+                });
+            }
+
+            clean() {}
+            destroy() {}
+        }
+
+        (async () => {
+            let registration = await navigator.serviceWorker.register("sw.js");
+            registration.addEventListener("updatefound", (event) => {
+                registration.installing.addEventListener("statechange", (event) => {
+                    if (event.target.state === "installed") {
+                        location.reload();
+                    }
+                });
+            });
+
+            if (registration.active) {
+                registration.update();
+            }
+
+            const db = await initIndexedDb();
+            const assetsStorage = new IdbAssetsStorage(db);
+            const segmentsStorage = new IdbSegmentsStorage(db);
+
+            shaka.polyfill.installAll();
+
+            if (shaka.Player.isBrowserSupported() && p2pml.shaka.Engine.isSupported()) {
+                const settings = {
+                    segments: {
+                        assetsStorage: assetsStorage,
+                    },
+                    loader: {
+                        segmentsStorage: segmentsStorage,
+                        trackerAnnounce: ["wss://tracker.novage.com.ua"]
+                    }
+                };
+                const engine = new p2pml.shaka.Engine(settings);
+
+                function log(message) {
+                    const p = document.createElement("p");
+                    p.innerHTML = message;
+                    document.body.appendChild(p);
+                }
+
+                engine.on(p2pml.core.Events.SegmentLoaded, (segment, peerId) => log(`segment ${segment.url} ${segment.range} loaded via ${peerId ? "P2P" : "HTTP"}`));
+                engine.on(p2pml.core.Events.PeerConnect, (peer) => log(`peer connected ${peer.id}`));
+                engine.on(p2pml.core.Events.PeerClose, (peer) => log(`peer disconnected ${peer.id}`));
+
+                const video = document.getElementById("video");
+                const player = new shaka.Player(video);
+                const onError = function(error) { console.error("Error code", error.code, "object", error); }
+                player.addEventListener("error", function(event) { onError(event.detail); });
+
+                engine.initShakaPlayer(player);
+
+                player.configure({ abr: { enabled: false }}); // disable ABR
+                player.load("https://live.yjtvw.com:8081/live/mp4:yjtv2.stream_540p/playlist.m3u8").catch(onError);
+            } else {
+                document.write("Not supported :(");
+            }
+        })();
+    </script>
+
+</body>
+</html>

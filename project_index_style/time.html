@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0,  maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/crotel/dev@b87555e/font_ShareTechMono.css">
+
+	<title>TIME</title>
+	<style>
+		html {
+			width: 100vw;
+			height: 100vh;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			/* font-family: 'IBM Plex Mono' , 'Courier New' , 'Courier' , 'monospace' , 'Montserrat', 'Share Tech Mono'; */
+			font-family: 'Share Tech Mono', monospace;
+			font-size: 10vw;
+			color: rgba(88, 88, 88, 0.5);
+			text-shadow: 0 0 20px rgba(66, 66, 66, 1), 0 0 20px rgba(66, 66, 66, 0);
+		}
+		#clock {
+			margin: 0 12vw;
+			position: fixed;
+			bottom: 50vh;
+		}
+		#ymd {
+			font-size: 5vw;
+			border: solid;
+			border-style: double;
+			width: -webkit-fit-content;
+			text-align: center;
+			margin: 0 auto;
+			padding: 5px 10px;
+		}
+		@media (pointer:none), (pointer:coarse)  and (orientation: landscape){
+			#clock {
+			margin: 0 12vw;
+			position: fixed;
+			bottom: calc(100vh - 4em);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="clock">
+		<div class="mechanics">
+			<div id="ymd"></div>
+			<span id="hour"></span>
+			<span id='timeSplit' style='visibility: visible;'>:</span>
+			<span id="min"></span>
+			<span id='timeSplit' style='visibility: visible;'>:</span>
+			<span id="sec"></span>
+		</div>
+	</div>
+</body>
+<script>
+	let now = () => {
+		let date = new Date();
+		let prem = '' + (date.getMonth() + 1),
+			pred = '' + date.getDate();
+		let m = prem.length === '2' ? prem : '0' + prem,
+			d = pred.length === '2' ? pred : '0' + pred,
+			y = date.getFullYear();
+		let prewd = new Array(7);
+		prewd[0] = "Sunday | 星期日";
+		prewd[1] = "Monday | 星期一";
+		prewd[2] = "Tuesday | 星期二";
+		prewd[3] = "Wednesday | 星期三";
+		prewd[4] = "Thursday | 星期四";
+		prewd[5] = "Friday | 星期五";
+		prewd[6] = "Saturday | 星期六";
+		let wd = prewd[date.getUTCDay()];
+		let time = new Intl.DateTimeFormat("en-GB", {
+			hour: "numeric",
+			minute: "numeric",
+			second: "numeric"
+		}).format(date).split(':');
+		return {
+			hour: time[0],
+			min: time[1],
+			sec: time[2],
+			ymd: [y, m, d].join(' - ') + '<br>' + '<span style="font-size:0.7em;">' + wd + '</span>'
+		};
+	};
+	let drawTime = (el, tl) => {
+		document.querySelector(el).innerHTML = tl;
+	};
+	let timeSplit = (el) => {
+		let t1 = document.querySelectorAll('#timeSplit')[0];
+		let t2 = document.querySelectorAll('#timeSplit')[1];
+		t1.getAttribute('style') === 'visibility: visible;' ? t1.setAttribute('style', 'visibility: hidden;') : t1.setAttribute('style', 'visibility: visible;');
+		t2.getAttribute('style') === 'visibility: visible;' ? t2.setAttribute('style', 'visibility: hidden;') : t2.setAttribute('style', 'visibility: visible;');
+	};
+	let timer = () => {
+		['#hour', '#min', '#sec', '#ymd', '#timeSplit'].forEach(function(e) {
+			e === '#hour' ? drawTime('#hour', now().hour) : (
+				e === '#min' ? drawTime('#min', now().min) : (
+					e === '#sec' ? drawTime('#sec', now().sec) : (
+						e === '#ymd' ? drawTime('#ymd', now().ymd) : timeSplit('#timeSplit')
+					)
+				)
+			)
+		})
+	}
+	setInterval(timer, 1000);
+</script>
+</html>
