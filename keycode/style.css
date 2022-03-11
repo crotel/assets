@@ -1,0 +1,224 @@
+html,
+body {
+    background-color: rgb(41, 41, 41);
+}
+
+* {
+    font-family: sans-serif;
+}
+
+div#keyboard {
+    width: 600pt;
+    position: relative;
+    margin: 0 auto;
+}
+
+div#keyboard row {
+    display: inline-flex;
+    width: inherit;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+div#keyboard row.one key {
+    height: auto !important;
+    padding: 0;
+    line-height: 1.5;
+    width: inherit;
+}
+
+key {
+    display: inline-table;
+    border: 1px solid #ffffff45;
+    color: white;
+    padding: 2pt 5pt;
+    margin: 2pt;
+    width: fit-content;
+    height: 25pt;
+    border-radius: 1.5pt;
+    flex-grow: 1;
+    line-height: 2;
+    text-align: center;
+}
+
+.two key:not(:last-child),
+.three key:not(:first-child),
+.four key[data-code*="Key"],
+.four key[data-code="Semicolon"],
+.four key[data-code="Quote"],
+.five key[data-code*="Key"],
+.five key[data-code="Comma"],
+.five key[data-code="Period"],
+.five key[data-code="Slash"] {
+    min-width: 25pt !important;
+    max-width: 25pt !important;
+}
+
+key.return {
+    width: fit-content;
+}
+
+key.single {
+    white-space: nowrap;
+    font-variant-caps: all-small-caps;
+}
+
+.one key:first-child,
+.two key.delete {
+    font-variant-caps: unset;
+}
+
+.six key {
+    white-space: nowrap;
+}
+
+.six key span {
+    font-size: .8%;
+    color: rgb(255 255 255 / 60%);
+}
+
+key.space.mid {
+    width: 40%;
+}
+
+key.double {
+    display: block;
+    font-size: .5rem;
+    color: rgb(255 255 255 / 60%);
+    line-height: 1.3;
+}
+
+key.double span {
+    color: white;
+    display: block;
+    font-size: 1rem;
+}
+
+key.shft {
+    width: 13%;
+}
+
+key.shft span {
+    font-size: .8%;
+    color: rgb(255 255 255 / 60%);
+}
+
+key.left {
+    text-align: left;
+}
+
+key.right {
+    text-align: right;
+}
+key.arrow{
+    min-height: 12.5pt!important;
+    max-height: 12.5pt!important;
+    font-size: 50%;
+    margin-block-start: calc(12.5pt + 5pt);
+    min-width: calc(25pt + 9pt)!important;
+    max-width: calc(25pt + 9pt)!important;
+    text-align: center;
+    padding: 0;
+}
+key.arrowup{
+    margin-block-start: calc(-25pt + 9pt);
+}
+key.arrowdown{
+    margin-inline-start: -38pt;
+}
+span.cap {
+    float: left;
+    position: fixed;
+    border: 1pt solid lime;
+    border-radius: 50%;
+    display: block;
+    width: 3pt;
+    height: 3pt;
+    margin-inline-start: 7pt;
+    margin-block-start: -18pt;
+    visibility: hidden;
+}
+
+div.keycodeblock {
+    width: 600pt;
+    height: 220pt;
+    margin: 0 auto;
+}
+
+div#id-keyCodeBox {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: space-between;
+    align-items: stretch;
+    width: inherit;
+}
+
+div.keycodeobject:first-child {
+    margin-inline-start: 3pt;
+}
+
+div.keycodeobject:last-child {
+    margin-inline-end: 3pt;
+}
+
+div.keycodeobject {
+    /*flex-grow: 1;*/
+    width: 25%;
+}
+
+.keyCode {
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.keyCode > span {
+    color: #c5c5c5;
+    /*font-family: sans-serif;*/
+    font-size: 130pt;
+}
+
+.keyBox {
+    display: block;
+    background-color: #dfdfdf;
+    border: 1px solid #969696;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(235, 235, 243, 0.1), 0 5px 15px rgba(218, 212, 212, 0.07) !important;
+}
+
+.txt-head {
+    font-size: 1em;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-weight: 600;
+    border-bottom: 1px solid #4d4d4d;
+    text-align: center;
+    display: block;
+}
+
+.txt-data {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    font-size: 2em;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-weight: 550;
+    display: block;
+}
+footer{
+    color: #c5c5c5;
+    text-align: center;
+    font-size: .8%;
+    font-weight: 100;
+    top: 50pt;
+    position: relative;
+}
+:any-link{
+    color:#c5c5c5;
+}

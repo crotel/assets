@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Keycodes</title>
+</head>
+<body onkeydown="return (event.keyCode != 116)">
+<div class="container">
+    <div class="keycodeblock">
+        <div class="row">
+            <div class="init keyCode">
+                <span id="id-alert">Press!</span>
+                <span id="id-keyCode"></span>
+            </div>
+        </div>
+        <div class="row" id="id-keyCodeBox">
+            <div class="keycodeobject">
+                <div class=" keyBox">
+                    <span class="txt-head">code</span>
+                    <span id="id-code" class="txt-data"></span>
+                </div>
+            </div>
+            <div class="keycodeobject">
+                <div class=" keyBox">
+                    <span class="txt-head">key</span>
+                    <span id="id-key" class="txt-data"></span>
+                </div>
+            </div>
+            <div class="keycodeobject">
+                <div class=" keyBox">
+                    <span class="txt-head">which</span>
+                    <span id="id-which" class="txt-data"></span>
+                </div>
+            </div>
+            <div class="keycodeobject">
+                <div class=" keyBox">
+                    <span class="txt-head">location</span>
+                    <span id="id-location" class="txt-data"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="wrapper">
+    <div id="keyboard">
+        <row class="one">
+            <key class="single esc" data-key="Escape" data-code="Escape" data-keyCode="27" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%1B" data-encodecaps="%1B">esc</key>
+            <key class="single f1" data-key="F1" data-code="F1" data-keyCode="112" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F1</key>
+            <key class="single f2" data-key="F2" data-code="F2" data-keyCode="113" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F2</key>
+            <key class="single f3" data-key="F3" data-code="F3" data-keyCode="114" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F3</key>
+            <key class="single f4" data-key="F4" data-code="F4" data-keyCode="115" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F4</key>
+            <key class="single f5" data-key="F5" data-code="F5" data-keyCode="116" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F5</key>
+            <key class="single f6" data-key="F6" data-code="F6" data-keyCode="117" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F6</key>
+            <key class="single f7" data-key="F7" data-code="F7" data-keyCode="118" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F7</key>
+            <key class="single f8" data-key="F8" data-code="F8" data-keyCode="119" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F8</key>
+            <key class="single f9" data-key="F9" data-code="F9" data-keyCode="120" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F9</key>
+            <key class="single f10" data-key="F10" data-code="F10" data-keyCode="121" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F10</key>
+            <key class="single f11" data-key="F11" data-code="F11" data-keyCode="122" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F11</key>
+            <key class="single f12" data-key="F12" data-code="F12" data-keyCode="123" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F12</key>
+            <key class="single f13" data-key="F13" data-code="F13" data-keyCode="124" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">F13</key>
+        </row>
+        <row class="two">
+            <key class="double til" data-key="`" data-code="Backquote" data-keyCode="192" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%7E" data-encodecaps="%60" data-uni="U+0060" data-unicaps="U+007E">~<span>`</span></key>
+            <key class="double 1" data-key="1" data-code="Digit1" data-keyCode="49" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%31" data-encodecaps="%21" data-uni="U+0031" data-unicaps="U+0021">!<span>1</span></key>
+            <key class="double 2" data-key="2" data-code="Digit2" data-keyCode="50" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%32" data-encodecaps="%40" data-uni="U+0032" data-unicaps="U+0040">@<span>2</span></key>
+            <key class="double 3" data-key="3" data-code="Digit3" data-keyCode="51" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%33" data-encodecaps="%23" data-uni="U+0033" data-unicaps="U+0023">#<span>3</span></key>
+            <key class="double 4" data-key="4" data-code="Digit4" data-keyCode="52" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%34" data-encodecaps="%24" data-uni="U+0034" data-unicaps="U+0024">$<span>4</span></key>
+            <key class="double 5" data-key="5" data-code="Digit5" data-keyCode="53" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%35" data-encodecaps="%25" data-uni="U+0035" data-unicaps="U+0025">%<span>5</span></key>
+            <key class="double 6" data-key="6" data-code="Digit6" data-keyCode="54" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%36" data-encodecaps="%5E" data-uni="U+0036" data-unicaps="U+005E">^<span>6</span></key>
+            <key class="double 7" data-key="7" data-code="Digit7" data-keyCode="55" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%37" data-encodecaps="%26" data-uni="U+0037" data-unicaps="U+0026">&<span>7</span></key>
+            <key class="double 8" data-key="8" data-code="Digit8" data-keyCode="56" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%38" data-encodecaps="%2A" data-uni="U+0038" data-unicaps="U+002A">*<span>8</span></key>
+            <key class="double 9" data-key="9" data-code="Digit9" data-keyCode="57" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%39" data-encodecaps="%28" data-uni="U+0039" data-unicaps="U+0028">(<span>9</span></key>
+            <key class="double 0" data-key="0" data-code="Digit0" data-keyCode="48" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%30" data-encodecaps="%29" data-uni="U+0030" data-unicaps="U+0029">)<span>0</span></key>
+            <key class="double hyp" data-key="-" data-code="Minus" data-keyCode="189" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%2D" data-encodecaps="%5F" data-uni="U+002D" data-unicaps="U+005F">_<span>-</span></key>
+            <key class="double equ" data-key="+" data-code="Equal" data-keyCode="187" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%3D" data-encodecaps="%2B" data-uni="U+003D" data-unicaps="U+002B">+<span>=</span></key>
+            <key class="single delete right" data-key="Backspace" data-code="Backspace" data-keyCode="8" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%08" data-encodecaps="%08" data-uni="U+007F">delete</key>
+        </row>
+        <row class="three">
+            <key class="tab left" data-key="Tab" data-code="Tab" data-keyCode="9" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%09" data-encodecaps="%09" data-uni="U+0009">tab
+            </key>
+            <key class="single q" data-key="q" data-code="KeyQ" data-keyCode="81" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%71" data-encodecaps="%51" data-uni="U+0071" data-unicaps="U+0051">q </key>
+            <key class="single w" data-key="w" data-code="KeyW" data-keyCode="87" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%77" data-encodecaps="%57" data-uni="U+0077" data-unicaps="U+0057">w
+            </key>
+            <key class="single e" data-key="e" data-code="KeyE" data-keyCode="69" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%65" data-encodecaps="%45" data-uni="U+0065" data-unicaps="U+0045">e
+            </key>
+            <key class="single r" data-key="r" data-code="KeyR" data-keyCode="82" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%72" data-encodecaps="%52" data-uni="U+0072" data-unicaps="U+0052">r
+            </key>
+            <key class="single t" data-key="t" data-code="KeyT" data-keyCode="84" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%74" data-encodecaps="%54" data-uni="U+0074" data-unicaps="U+0054">t
+            </key>
+            <key class="single y" data-key="y" data-code="KeyY" data-keyCode="89" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%79" data-encodecaps="%59" data-uni="U+0079" data-unicaps="U+0059">y
+            </key>
+            <key class="single u" data-key="u" data-code="KeyU" data-keyCode="85" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%75" data-encodecaps="%55" data-uni="U+0075" data-unicaps="U+0055">u
+            </key>
+            <key class="single i" data-key="i" data-code="KeyI" data-keyCode="73" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%69" data-encodecaps="%49" data-uni="U+0069" data-unicaps="U+0049">i
+            </key>
+            <key class="single o" data-key="o" data-code="KeyO" data-keyCode="79" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6F" data-encodecaps="%4F" data-uni="U+006F" data-unicaps="U+004F">o
+            </key>
+            <key class="single p" data-key="p" data-code="KeyP" data-keyCode="80" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%70" data-encodecaps="%50" data-uni="U+0070" data-unicaps="U+0050">p
+            </key>
+            <key class="double lbrack" data-key="[" data-code="BracketLeft" data-keyCode="219" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%5B" data-encodecaps="%7B" data-uni="U+005B" data-unicaps="U+007B">{<span>[</span></key>
+            <key class="double rbrack" data-key="]" data-code="BracketRight" data-keyCode="221" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%5D" data-encodecaps="%7D" data-uni="U+005D" data-unicaps="U+007D">}<span>]</span></key>
+            <key class="double bs" data-key="\" data-code="Backslash" data-keyCode="220" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%5C" data-encodecaps="%7C" data-uni="U+005C" data-unicaps="U+007C">|<span>\</span></key>
+        </row>
+        <row class="four">
+            <key class="caps left" data-key="CapsLock" data-code="CapsLock" data-keyCode="20" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">caps lock</key>
+            <key class="single a" data-key="a" data-code="KeyA" data-keyCode="65" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%61" data-encodecaps="%41" data-uni="U+0061" data-unicaps="U+0041">a
+            </key>
+            <key class="single s" data-key="s" data-code="KeyS" data-keyCode="83" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%73" data-encodecaps="%53" data-uni="U+0073" data-unicaps="U+0053">s
+            </key>
+            <key class="single d" data-key="d" data-code="KeyD" data-keyCode="68" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%64" data-encodecaps="%44" data-uni="U+0064" data-unicaps="U+0044">d
+            </key>
+            <key class="single f" data-key="f" data-code="KeyF" data-keyCode="70" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%66" data-encodecaps="%46" data-uni="U+0066" data-unicaps="U+0046">f
+            </key>
+            <key class="single g" data-key="g" data-code="KeyG" data-keyCode="71" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%67" data-encodecaps="%47" data-uni="U+0067" data-unicaps="U+0047">g
+            </key>
+            <key class="single h" data-key="h" data-code="KeyH" data-keyCode="72" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%68" data-encodecaps="%48" data-uni="U+0068" data-unicaps="U+0048">h
+            </key>
+            <key class="single j" data-key="j" data-code="KeyJ" data-keyCode="74" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6A" data-encodecaps="%4A" data-uni="U+006A" data-unicaps="U+004A">j
+            </key>
+            <key class="single k" data-key="k" data-code="KeyK" data-keyCode="75" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6B" data-encodecaps="%4B" data-uni="U+006B" data-unicaps="U+004B">k
+            </key>
+            <key class="single l" data-key="l" data-code="KeyL" data-keyCode="76" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6C" data-encodecaps="%4C" data-uni="U+006C" data-unicaps="U+004C">l</key>
+            <key class="double col" data-key=";" data-code="Semicolon" data-keyCode="186" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%3B" data-encodecaps="%3A" data-uni="U+003B" data-unicaps="U+003A">:<span>;</span></key>
+            <key class="double apos" data-key="'" data-code="Quote" data-keyCode="222" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%27" data-encodecaps="%22" data-uni="U+0027" data-unicaps="U+0022">"<span>'</span></key>
+            <key class="double return right" data-key="Enter" data-code="Enter" data-keyCode="13" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%0D" data-encodecaps="%0D" data-uni="U+000D">enter<span>return</span></key>
+            <span class="cap" data-name="caps lock on"></span>
+        </row>
+        <row class="five">
+            <key class="shft left" data-key="Shift" data-code="ShiftLeft" data-keyCode="16" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">
+                shift<span> ⇧</span></key>
+            <key class="single z" data-key="z" data-code="KeyZ" data-keyCode="90" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%7A" data-encodecaps="%5A" data-uni="U+007A" data-unicaps="U+005A">Z
+            </key>
+            <key class="single x" data-key="x" data-code="KeyX" data-keyCode="88" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%78" data-encodecaps="%58" data-uni="U+0078" data-unicaps="U+0058">X
+            </key>
+            <key class="single c" data-key="c" data-code="KeyC" data-keyCode="67" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%63" data-encodecaps="%43" data-uni="U+0063" data-unicaps="U+0043">C
+            </key>
+            <key class="single v" data-key="v" data-code="KeyV" data-keyCode="86" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%76" data-encodecaps="%56" data-uni="U+0076" data-unicaps="U+0056">V
+            </key>
+            <key class="single b" data-key="b" data-code="KeyB" data-keyCode="66" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%62" data-encodecaps="%42" data-uni="U+0062" data-unicaps="U+0042">B
+            </key>
+            <key class="single n" data-key="n" data-code="KeyN" data-keyCode="78" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6E" data-encodecaps="%4E" data-uni="U+006E" data-unicaps="U+004E">N
+            </key>
+            <key class="single m" data-key="m" data-code="KeyM" data-keyCode="77" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%6D" data-encodecaps="%4D" data-uni="U+006D" data-unicaps="U+004D">M
+            </key>
+            <key class="double comm" data-key="," data-code="Comma" data-keyCode="188" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%2C" data-encodecaps="%3C" data-uni="U+002C" data-unicaps="U+003C"><<span>,</span></key>
+            <key class="double great" data-key="." data-code="Period" data-keyCode="190" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%2E" data-encodecaps="%3E" data-uni="U+002E" data-unicaps="U+003E">><span>.</span></key>
+            <key class="double quest" data-key="/" data-code="Slash" data-keyCode="191" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%2F" data-encodecaps="%3F" data-uni="U+002F" data-unicaps="U+003F">?<span>/</span></key>
+            <key class="shft right" data-key="Shift" data-code="ShiftRight" data-keyCode="16" data-location="2" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false"><span>⇧ </span>shift
+            </key>
+        </row>
+        <row class="six">
+            <key class=" ctrl left" data-key="Control" data-code="ControlLeft" data-keyCode="17" data-location="1" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false">control<span> ⌃</span></key>
+            <key class=" opt left" data-key="Alt" data-code="AltLeft" data-keyCode="18" data-location="1" data-isTrusted="false" data-altKey="true" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false">option | alt<span> ⌥</span></key>
+            <key class=" cmd left" data-key="Meta" data-code="MetaLeft" data-keyCode="91" data-location="1" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="true">command<span> ⌘</span></key>
+            <key class=" space mid" data-key="Space" data-code="Space" data-keyCode="32" data-location="1" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false" data-encode="%20" data-encodecaps="%20"></key>
+            <key class=" cmd right" data-key="Meta" data-code="MetaRight" data-keyCode="93" data-location="2" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="false" data-metaKey="true"><span>⌘ </span>command</key>
+            <key class=" opt right" data-key="Alt" data-code="AltRight" data-keyCode="18" data-location="2" data-isTrusted="false" data-altKey="true" data-shiftKey="false" data-ctrlKey="false" data-metaKey="false"><span>⌥ </span>alt | option</key>
+<!--            <key class=" ctrl right" data-key="Control" data-code="ControlRight" data-keyCode="17" data-location="2" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false"><span>⌃ </span>control</key>-->
+            <key class=" arrow arrowleft" data-key="ArrowLeft" data-code="ArrowLeft" data-keyCode="37" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false">◀︎</key>
+            <key class=" arrow arrowup" data-key="ArrowUp" data-code="ArrowUp" data-keyCode="38" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false">▲︎</key>
+            <key class=" arrow arrowdown" data-key="ArrowDown" data-code="ArrowDown" data-keyCode="40" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false">▼︎</key>
+            <key class=" arrow arrowright" data-key="ArrowRight" data-code="ArrowRight" data-keyCode="39" data-location="0" data-isTrusted="false" data-altKey="false" data-shiftKey="false" data-ctrlKey="true" data-metaKey="false">▶︎︎</key>
+        </row>
+    </div>
+</div>
+<footer>
+    © 2022 CROTEL©.<br>
+inspired by <a href="https://github.com/ensardev/keycodes">Ensar Akkuzey</a> & <a href="https://github.com/jayjo/keymap">Jeffrey Jorgensen</a>.
+</footer>
+<script src="keycodes.js"></script>
+</body>
+</html>
