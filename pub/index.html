@@ -1,0 +1,89 @@
+
+<!doctype html>
+  <html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, height=device-height, viewport-fit=cover, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>IPFS in the Browser</title>
+    <script preload src="ipfs.js"></script>
+    <link preload rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript">
+    function vp() {
+        const rootElement = document.querySelector("html");
+        const viewPortH = rootElement.getBoundingClientRect().height;
+        const windowH = window.innerHeight;
+        const browserUiBarsH = viewPortH - windowH;
+        document.body.style.height = "calc(100vh - " + browserUiBarsH + "px)";
+    } 
+      document.addEventListener('DOMContentLoaded', async () => {
+        const node = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
+        window.node = node
+
+        const status = node.isOnline() ? 'online' : 'offline'
+
+        console.log("Node status: " + status )
+        document.getElementById('status').className = status;
+        document.getElementById('status').innerText = "IPFS " + status;
+        if(status ==="online") {document.querySelector("img#loading").className = "hidden"}
+      // You can write more code here to use it. Use methods like
+      // node.add, node.get. See the API docs here:
+      // https://github.com/ipfs/js-ipfs/tree/master/packages/interface-ipfs-core
+
+        // vp()
+    
+    })
+    window.onresize = function(){
+        // vp()
+    }
+  </script>
+</head>
+<body>
+  <!-- <h1>IPFS in the Browser</h1>
+    <p>This page creates an IPFS node in your browser and drops it into the global Javascript namespace as <b><em style="background-color:#d7d6d6">node</em></b>. Open the console to play around with it.</p> 
+    style="visibility: hidden;"
+    -->
+    
+    <h2 id="title"><span id="status" class="offline">IPFS offline</span><img id="loading" src="loading.svg"></h2>
+    <!--<input type="button" id="descontrol" value="X">-->
+    <div id="descontrol">
+    <span class="l1" style=""></span>
+    <span class="l2" style=""></span>
+    </div>
+    <aside id="description" >More then one tab share the same private key and identity should got error.</aside>
+
+  <!-- <h2>Some suggestions</h2>
+
+  <p>Try adding a new file:</p>
+
+  <code style="display:block; white-space:pre-wrap; background-color:#d7d6d6">
+    async function addFile () {
+      const { cid } = await node.add('Hello world!')
+      console.log('successfully stored', cid)
+    }
+
+    addFile()
+  </code>
+
+  <p>You can cat that same file. If you used the exact same string as above ('Hello world!') you should have an hash like this: 'QmQzCQn4puG4qu8PVysxZmscmQ5vT1ZXpqo7f58Uh9QfyY'</p>
+
+  <code style="display:block; white-space:pre-wrap; background-color:#d7d6d6">
+    async function catFile () {
+      for await (const data of node.cat('QmQzCQn4puG4qu8PVysxZmscmQ5vT1ZXpqo7f58Uh9QfyY')) {
+        console.log(data.toString())
+      }
+    }
+
+    catFile()
+  </code> -->
+  <label id="content_label" for="content">CONTENT</label><br>
+  <textarea type="text" id="content" class="content ipfs_add ipfs_input"></textarea><br>
+  <label id="cid_label" for="cid">CID</label><br>
+  <input type="text" id="cid" class="cid"><br>
+  <button id="add" class="add btn">Add</button>
+  <button id="cat" class="cat btn">Cat</button>
+  <script src="main.js"></script>
+</body>
+</html>
