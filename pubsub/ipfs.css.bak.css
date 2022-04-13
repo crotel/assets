@@ -9,98 +9,98 @@ See: https://github.com/ipfs-shipyard/ipfs-css
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 400;
-    src: local('Inter UI'), local('InterUI-Regular'), url("./fonts/Inter-UI-Regular.woff2") format("woff2");
+    src: local('Inter UI'), local('InterUI-Regular'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-Regular.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 400;
-    src: local('Inter UI Italic'), local('InterUI-Italic'), url("./fonts/Inter-UI-Italic.woff2") format("woff2");
+    src: local('Inter UI Italic'), local('InterUI-Italic'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-Italic.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 500;
-    src: local('Inter UI Medium'), local('InterUI-Medium'), url("./fonts/Inter-UI-Medium.woff2") format("woff2");
+    src: local('Inter UI Medium'), local('InterUI-Medium'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-Medium.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 500;
-    src: local('Inter UI Medium Italic'), local('InterUI-MediumItalic'), url("./fonts/Inter-UI-MediumItalic.woff2") format("woff2");
+    src: local('Inter UI Medium Italic'), local('InterUI-MediumItalic'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-MediumItalic.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 700;
-    src: local('Inter UI Bold'), local('InterUI-Bold'), url("./fonts/Inter-UI-Bold.woff2") format("woff2");
+    src: local('Inter UI Bold'), local('InterUI-Bold'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-Bold.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 700;
-    src: local('Inter UI Bold Italic'), local('InterUI-BoldItalic'), url("./fonts/Inter-UI-BoldItalic.woff2") format("woff2");
+    src: local('Inter UI Bold Italic'), local('InterUI-BoldItalic'), url("https://unpkg.com/ipfs-css@0.12.0/fonts/Inter-UI-BoldItalic.woff2") format("woff2");
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 300;
-    src: local('Montserrat Light'), local('Montserrat-Light'), url('./fonts/Montserrat-Light.woff2') format('woff2');
+    src: local('Montserrat Light'), local('Montserrat-Light'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-Light.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 300;
-    src: local('Montserrat Light Italic'), local('Montserrat-LightItalic'), url('./fonts/Montserrat-LightItalic.woff2') format('woff2');
+    src: local('Montserrat Light Italic'), local('Montserrat-LightItalic'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-LightItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    src: local('Montserrat Regular'), local('Montserrat-Regular'), url('./fonts/Montserrat-Regular.woff2') format('woff2');
+    src: local('Montserrat Regular'), local('Montserrat-Regular'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-Regular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 400;
-    src: local('Montserrat Italic'), local('Montserrat-Italic'), url('./fonts/Montserrat-Italic.woff2') format('woff2');
+    src: local('Montserrat Italic'), local('Montserrat-Italic'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-Italic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
-    src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('./fonts/Montserrat-SemiBold.woff2') format('woff2');
+    src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 600;
-    src: local('Montserrat SemiBold Italic'), local('Montserrat-SemiBoldItalic'), url('./fonts/Montserrat-SemiBoldItalic.woff2') format('woff2');
+    src: local('Montserrat SemiBold Italic'), local('Montserrat-SemiBoldItalic'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    src: local('Montserrat Bold'), local('Montserrat-Bold'), url('./fonts/Montserrat-Bold.woff2') format('woff2');
+    src: local('Montserrat Bold'), local('Montserrat-Bold'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
-    src: local('Montserrat Bold Italic'), local('Montserrat-BoldItalic'), url('./fonts/Montserrat-BoldItalic.woff2') format('woff2');
+    src: local('Montserrat Bold Italic'), local('Montserrat-BoldItalic'), url('https://unpkg.com/ipfs-css@0.12.0/fonts/Montserrat-BoldItalic.woff2') format('woff2');
 }
 
 /* IPFS theme.css - Generated from https://github.com/ipfs-shipyard/ipfs-css/blob/master/theme.json */
