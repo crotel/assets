@@ -10,9 +10,11 @@ import {
     catchAndLog
 } from './util.js'
 // import { toString as uint8ArrayToString } from "uint8arrays/to-string";
-const {
-    toString
-} = Uint8arrays;
+// const {
+//     toString
+// } = Uint8arrays;
+const uint8ArrayToString = Uint8arrays.toString;
+// import { toString as uint8ArrayToString } from "./uint8arrays.js";
 
 async function main() {
     const apiUrlInput = document.getElementById('api-url')
