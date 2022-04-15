@@ -96,11 +96,11 @@ async function main() {
             if (from === peerId) return log(`Ignoring message ${seqno} from self`)
             log(`Message ${seqno} from ${from}:`)
             try {
-                //         log(JSON.stringify(uint8ArrayToString(msg.data), null, 2))
-                log(new TextDecoder().decode(msg.data))
+                        log(JSON.stringify(uint8ArrayToString(msg.data), null, 2))
+//                 log(new TextDecoder().decode(msg.data))
             } catch (_) {
-                //         log(uint8ArrayToString(msg.data, 'base16'))
-                log(new TextDecoder().decode(msg.data))
+                        log(uint8ArrayToString(msg.data, 'base16'))
+//                 log(new TextDecoder().decode(msg.data))
             }
         })
 
