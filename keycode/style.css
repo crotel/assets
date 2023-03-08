@@ -21,6 +21,7 @@ div#keyboard row {
     flex-wrap: nowrap;
     align-content: space-between;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 div#keyboard row.one key {
@@ -42,6 +43,7 @@ key {
     flex-grow: 1;
     line-height: 2;
     text-align: center;
+    box-sizing: content-box;
 }
 
 .two key:not(:last-child),

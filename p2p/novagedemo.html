@@ -36,10 +36,8 @@
     <script async src="p2p-graph.js"></script>
 
     <script>
-        const URL_P2P_MEDIA_LOADER_HLSJS =
-        "p2p-media-loader-hlsjs.min.js";
-        const URL_P2P_MEDIA_LOADER_SHAKA =
-        "p2p-media-loader-shaka.min.js";
+        const URL_P2P_MEDIA_LOADER_HLSJS = "p2p-media-loader-hlsjs.min.js";
+        const URL_P2P_MEDIA_LOADER_SHAKA = "p2p-media-loader-shaka.min.js";
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
@@ -472,15 +470,15 @@
                         }
 
                         switch (this.playerType) {
-                            case "hlsjs":
-                            case "clappr":
-                            case "flowplayer":
-                            case "mediaelement":
-                            case "videojs-contrib-hlsjs":
-                            case "videojs-hlsjs-plugin":
-                            case "dplayer":
-                            case "jwplayer":
-                            case "plyr":
+                        case "hlsjs":
+                        case "clappr":
+                        case "flowplayer":
+                        case "mediaelement":
+                        case "videojs-contrib-hlsjs":
+                        case "videojs-hlsjs-plugin":
+                        case "dplayer":
+                        case "jwplayer":
+                        case "plyr":
                             await loadScript("https://cdn.jsdelivr.net/npm/hls.js@latest");
 
                             if (!Hls.isSupported()) {
@@ -491,10 +489,10 @@
                             this.engine = this.isP2PSupported ? new p2pml.hlsjs.Engine(config) : undefined;
                             break;
 
-                            case "shakaplayer":
-                            case "dplayer-shaka":
-                            case "clappr-shaka":
-                            case "plyr-shaka":
+                        case "shakaplayer":
+                        case "dplayer-shaka":
+                        case "clappr-shaka":
+                        case "plyr-shaka":
                             await Promise.all([
                                 loadScript("https://github.com/videojs/mux.js/releases/download/v5.1.2/mux.js"),
                                 loadScript(
@@ -511,61 +509,61 @@
                             this.engine = this.isP2PSupported ? new p2pml.shaka.Engine(config) : undefined;
                             break;
 
-                            default:
+                        default:
                             console.error("Unexpected player type: ", this.playerType);
                             return;
                         }
 
                         switch (this.playerType) {
-                            case "hlsjs":
+                        case "hlsjs":
                             this.initHlsJsPlayer();
                             break;
 
-                            case "clappr":
+                        case "clappr":
                             this.initClapprPlayer();
                             break;
 
-                            case "flowplayer":
+                        case "flowplayer":
                             this.initFlowplayerPlayer();
                             break;
 
-                            case "mediaelement":
+                        case "mediaelement":
                             this.initMediaElementPlayer();
                             break;
 
-                            case "videojs-contrib-hlsjs":
+                        case "videojs-contrib-hlsjs":
                             this.initVideoJsContribHlsJsPlayer();
                             break;
 
-                            case "videojs-hlsjs-plugin":
+                        case "videojs-hlsjs-plugin":
                             this.initVideoJsHlsJsPlugin();
                             break;
 
-                            case "jwplayer":
+                        case "jwplayer":
                             this.initJwPlayer();
                             break;
 
-                            case "dplayer":
+                        case "dplayer":
                             this.initDPlayerHlsJs();
                             break;
 
-                            case "plyr":
+                        case "plyr":
                             this.initPlyrPlayerHlsJs();
                             break;
 
-                            case "shakaplayer":
+                        case "shakaplayer":
                             this.initShakaPlayer();
                             break;
 
-                            case "clappr-shaka":
+                        case "clappr-shaka":
                             this.initClapprPlayer(true);
                             break;
 
-                            case "dplayer-shaka":
+                        case "dplayer-shaka":
                             this.initDPlayerShaka();
                             break;
 
-                            case "plyr-shaka":
+                        case "plyr-shaka":
                             this.initPlyrPlayerShaka();
                             break;
                         }
@@ -1085,11 +1083,11 @@
                             min: "auto",
                             strokeWidth: 1,
                             series: [
-                            { name: "Upload P2P", color: "#88eab9", data: [], renderer: "area" },
-                            { name: " - P2P", color: "#88b9ea", data: [], renderer: "area" },
-                            { name: " - HTTP", color: "#eae288", data: [], renderer: "area" },
-                            { name: "Download", color: "#f64", data: [], renderer: "line" },
-                            ],
+                                { name: "Upload P2P", color: "#88eab9", data: [], renderer: "area" },
+                                { name: " - P2P", color: "#88b9ea", data: [], renderer: "area" },
+                                { name: " - HTTP", color: "#eae288", data: [], renderer: "area" },
+                                { name: "Download", color: "#f64", data: [], renderer: "line" },
+                                ],
                         };
 
                         this.chart = new Rickshaw.Graph(chartConf);
